@@ -1,0 +1,34 @@
+#1775: Equal Sum Arrays With Minimum Number of Operations
+class Solution:
+    def minOperations(self, nums1: List[int], nums2: List[int]) -> int:
+        sum1 = sum(nums1)
+        sum2 = sum(nums2)
+        if sum1 == sum2:
+            return 0
+        sum1_greater = sum1 > sum2
+        gap = abs(sum1 - sum2)
+        diffs = []
+        if(sum1_greater):
+            for i in range(len(nums1)):
+                diffs += [nums1[i] - 1]
+            for i in range(len(nums2)):
+                diffs += [6 - nums2[i]]
+        else:
+            for i in range(len(nums2)):
+                diffs += [nums2[i] - 1]
+            for i in range(len(nums1)):
+                diffs += [6 - nums1[i]]
+                
+        diffs.sort(reverse = True)
+        if(sum(diffs)) < gap:
+            return -1
+        
+        counter = i = 0
+        while i < len(diffs):
+            gap -= diffs[i]
+            i += 1
+            counter += 1
+            
+            if gap <= 0:
+                break
+        return counter 
