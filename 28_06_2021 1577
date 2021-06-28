@@ -1,0 +1,52 @@
+# 1577. Number of Ways Where Square of Number Is Equal to Product of Two Numbers
+
+# Given two arrays of integers nums1 and nums2, return the number of triplets formed (type 1 and type 2) under the following rules:
+
+# Type 1: Triplet (i, j, k) if nums1[i]2 == nums2[j] * nums2[k] where 0 <= i < nums1.length and 0 <= j < k < nums2.length.
+# Type 2: Triplet (i, j, k) if nums2[i]2 == nums1[j] * nums1[k] where 0 <= i < nums2.length and 0 <= j < k < nums1.length.
+
+# Input: nums1 = [1,1], nums2 = [1,1,1]
+# Output: 9
+# Explanation: All Triplets are valid, because 1^2 = 1 * 1.
+# Type 1: (0,0,1), (0,0,2), (0,1,2), (1,0,1), (1,0,2), (1,1,2).  nums1[i]^2 = nums2[j] * nums2[k].
+# Type 2: (0,0,1), (1,0,1), (2,0,1). nums2[i]^2 = nums1[j] * nums1[k].
+
+class Solution:
+    def numTriplets(self, nums1: List[int], nums2: List[int]) -> int:
+        squ1 = dict()
+        squ2 = dict()
+        res = 0
+        for num in nums1:
+            curr = num**2
+            value = squ1.get(curr)
+            
+            if value == None:
+                squ1[curr] = 1
+            else:
+                squ1[curr] = value + 1
+    
+        for num in nums2:
+            curr = num**2
+            value = squ2.get(curr)
+            if value == None:
+                squ2[curr] = 1
+            else:
+                squ2[curr] = value + 1
+
+        for i in range(len(nums1)):
+            for k in range(i+1, len(nums1)):
+                curr = nums1[i] * nums1[k]
+                freq = squ2.get(curr)
+                if freq is not None:
+                    res += freq
+
+        for i in range(len(nums2)):
+            for k in range(i+1, len(nums2)):
+                curr = nums2[i] * nums2[k]
+                freq = squ1.get(curr)
+                if freq is not None:
+                    res += freq
+                    
+        return res
+        
+        
