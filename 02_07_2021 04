@@ -1,0 +1,33 @@
+# 4. Median of Two Sorted Arrays
+
+### My First Version: Two-Pointer. O(m+n) ###
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        tot_size = len(nums1) + len(nums2)
+        i = j = 0
+        counter = 0
+        curr = None
+        
+        while counter < tot_size //2 + 1:
+            prev = curr
+            counter += 1
+            if i == len(nums1):
+                curr = nums2[j]
+                j += 1
+                continue
+            if j == len(nums2):
+                curr = nums1[i]
+                i += 1
+                continue
+            if nums1[i] < nums2[j]:
+                curr = nums1[i]
+                i += 1
+            else:
+                curr = nums2[j]
+                j += 1
+            
+        if tot_size %2 != 0:
+            return curr
+        else:
+            return (prev + curr) / 2
