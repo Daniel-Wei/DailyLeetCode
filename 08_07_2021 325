@@ -1,0 +1,81 @@
+# 325. Maximum Size Subarray Sum Equals k
+
+### KEY Idea: Prefix Sum + HashMap ###
+
+# Given an integer array nums and an integer k, 
+  return the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
+
+# Example:
+  Input: nums = [1,-1,5,-2,3], k = 3
+  Output: 4
+  Explanation: The subarray [1, -1, 5, -2] sums to 3 and is the longest.
+  
+ 
+ 
+ ### My Version One: Brute Force --- O(n^2) ###
+ 
+ class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        prefix_sums = [0, nums[0]]
+        for i in range(1, len(nums)):
+            prefix_sums += [prefix_sums[i] + nums[i]]
+            
+        d = {}
+        for i in range(len(prefix_sums)):
+            for j in range(i + 1, len(prefix_sums)):
+                curr = prefix_sums[j] - prefix_sums[i]
+                curr_len = j - i
+                if not d.get(curr) or d[curr] < curr_len:
+                    d[curr] = curr_len
+                    
+        if not d.get(k):
+            return 0
+        else:
+            return d.get(k)
+            
+### My Version Two: Check for Prefix_Total - k --- O(n) ###
+
+class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        prefix = {}
+        sums = res = 0
+        
+        for i, num in enumerate(nums):
+            sums += num
+            
+            # Add in new prefix_sum
+            if sums not in prefix:
+                prefix[sums] = i
+                
+            # check whether curr prefix sum is == k
+            # no need for 'res = max(res, i + 1)' and directly 'continue' afterwards, as i + 1 is the longest
+            if sums == k:
+                res = i + 1
+                continue
+                
+            # check the sum(subarray) == k whose starting index is not 0
+            if sums-k in prefix:
+                res = max(res, i - prefix[sums - k])
+        
+            
+        return res
+        
+### LeetCode Discussion Version: dict{0:-1} avoid check for sums == k ###
+
+class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+
+        # This also includes sums == k
+        # e.g., sum(nums[0:3]) == k, i.e., when i = 3, sums == k
+        # sums - k in index_map, as sums - 0 == sums == k
+        # then the ans == i - (-1) == i + 1 == actual length
+		    index_map = {0: -1}
+		    sum = ans = 0
+		    for i, num in enumerate(nums):
+			      sum += num 
+			  if sum - k in index_map:
+				    ans = max(ans, i - index_map[sum - k])
+			  if sum not in index_map:
+				    index_map[sum] = i
+		    return ans
+		
