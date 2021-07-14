@@ -1,1 +1,51 @@
+# 1593. Split a String Into the Max Number of Unique Substrings
 
+*** Given a string s, return the maximum number of unique substrings that the given string can be split into.
+
+*** You can split string s into any list of non-empty substrings, where the concatenation of the substrings forms the original string. 
+    However, you must split the substrings such that all of them are unique.
+
+# Example
+*** Input: s = "ababccc"
+*** Output: 5
+*** Explanation: One way to split maximally is ['a', 'b', 'ab', 'c', 'cc']. 
+    Splitting like ['a', 'b', 'a', 'b', 'c', 'cc'] is not valid as you have 'a' and 'b' multiple times.
+
+### My Version 1: Bit Mask + Brute Force ###
+
+class Solution:
+    def maxUniqueSplit(self, s: str) -> int:
+        prev = ['0', '1']
+        for i in range(len(s) - 2):
+            curr = []
+            for ele in prev:
+                curr += [ele + '0']
+                curr += [ele + '1']
+            prev = curr
+        for i in range(len(prev)):
+            prev[i] = prev[i] + '1'
+            
+        substrs = []
+        for ele in prev:
+            last = 0
+            curr_substrs = []
+            for i in range(len(ele)):
+                
+                if ele[i] == '1':
+                    curr_substrs += [s[last: i + 1]]
+                    last = i + 1
+            
+            substrs += [set(curr_substrs)]
+            
+        res = 0
+        for ele in substrs:
+            if len(ele) < res:
+                continue
+            d = dict()
+            for sub in ele:
+                if sub not in d:
+                    d[sub] = ""
+                else:
+                    break
+            res = max(res, len(d))
+        return res
