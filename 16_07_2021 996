@@ -6,6 +6,8 @@
 *** Return the number of permutations of nums that are squareful. 
     Two permutations perm1 and perm2 differ if and only if there is some index i such that perm1[i] != perm2[i].
 
+
+*** Official Solution ***
 import collections
 
 class Solution():
