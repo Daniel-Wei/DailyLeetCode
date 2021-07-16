@@ -1,0 +1,33 @@
+# 996. Number of Squareful Arrays
+
+*** Given an array nums of non-negative integers, 
+    the array is squareful if for every pair of adjacent elements, their sum is a perfect square.
+
+*** Return the number of permutations of nums that are squareful. 
+    Two permutations perm1 and perm2 differ if and only if there is some index i such that perm1[i] != perm2[i].
+
+import collections
+
+class Solution():
+    def numSquarefulPerms(self, nums):
+        count = collections.Counter(nums)
+
+        graph = {x: [] for x in count}
+        for x in count:  # Find those numbers and x can form a square
+            for y in count:
+                if int((x+y)**.5 + 0.5) ** 2 == x+y:  # ,0.5 plus and without adding does not affect the result
+                    graph[x].append(y)
+
+        def dfs(x, todo):
+            count[x] -= 1
+            if todo == 0:
+                ans = 1
+            else:
+                ans = 0
+                for y in graph[x]:  # Select a number in turn for depth-first recursive judgment
+                    if count[y]:
+                        ans += dfs(y, todo - 1)
+            count[x] += 1
+            return ans
+
+        return sum(dfs(x, len(nums) - 1) for x in count)
