@@ -1,0 +1,36 @@
+# 212. Word Search II
+
+class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        chars = set()
+        for row in board:
+            for char in row:
+                chars.add(char)
+            
+        def backtrack(pos, word, index, res):
+            if index == len(word):
+                res += [word]
+            neighbours = []
+            if pos[0] == 0:
+                if pos[1] == 0:
+                    neighbours += [[0, 1], [1, 0]]
+                else:
+                    neighbours += [[0, pos[1] - 1], [0, pos[1] + 1], [1, pos[1]]]
+            else:
+                if pos[1] == 0:
+                    neighbours += [[pos[0] + 1, 0], [pos[0] - 1, 0], [pos[0], 1]]
+                else:
+                    neighbours += [[pos[0] - 1, pos[1]], [pos[0] + 1, pos[1]], [pos[0], pos[1] - 1], [pos[0], pos[1] + 1]]
+            
+            for i in range(len(neighbours)):
+                if board[neighbours[i][0]][neighbours[i][1]] == word[index]:
+                    backtrack([neighbours[i][0], neighbours[i][1]], word, index + 1, res) 
+            
+            return None
+        
+        res = []
+        for word in words:
+            if word[0] in chars:
+                backtrack([0, 0], word, 0, res)
+                
+        return res
