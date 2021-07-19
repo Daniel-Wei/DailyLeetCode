@@ -11,14 +11,14 @@ class Solution:
             if pos[0] == 0:
                 if pos[1] == 0:
                     neighbours += [[0, 1], [1, 0]]
-                elif pos[1] == len(board) - 1:
+                elif pos[1] == len(board[0]) - 1:
                     neighbours += [[0, pos[1] - 1], [1, pos[1]]]
                 else:
                     neighbours += [[0, pos[1] - 1], [0, pos[1] + 1], [1, pos[1]]]
             elif pos[0] == len(board) - 1:
                 if pos[1] == 0:
                     neighbours += [[pos[0] - 1, 0], [pos[0], 1]]
-                elif pos[1] == len(board) - 1:
+                elif pos[1] == len(board[0]) - 1:
                     neighbours += [[pos[0], pos[1] - 1], [pos[0] - 1, pos[1]]]
                 else:
                     neighbours += [[pos[0], pos[1] - 1], [pos[0], pos[1] + 1], [pos[0] - 1, pos[1]]]
@@ -26,24 +26,24 @@ class Solution:
             else:
                 if pos[1] == 0:
                     neighbours += [[pos[0] + 1, 0], [pos[0] - 1, 0], [pos[0], 1]]
-                elif pos[1] == len(board) - 1:
+                elif pos[1] == len(board[0]) - 1:
                     neighbours += [[pos[0] - 1, pos[1]], [pos[0], pos[1] - 1], [pos[0] + 1, pos[1]]]
                 else:
                     neighbours += [[pos[0] - 1, pos[1]], [pos[0] + 1, pos[1]], [pos[0], pos[1] - 1], [pos[0], pos[1] + 1]]
             
             for i in range(len(neighbours)):
                 if board[neighbours[i][0]][neighbours[i][1]] == word[index]:
-                    backtrack([neighbours[i][0], neighbours[i][1]], word, index + 1, res) 
+                    if backtrack([neighbours[i][0], neighbours[i][1]], word, index + 1, res):
+                        return True
             
-            return None
+            return False
         
         res = []
         found = False
         for word in words:
             for i in range(len(board)):
                 for k in range(len(board[i])):
-                    # Get rid of the edge case when len(board) == 1
-                    if board[i][k] == word[0] and len(board) >= len(word):
+                    if board[i][k] == word[0] and (len(board) >= len(word) or len(board[0]) >= len(word)):
                         if backtrack([i, k], word, 1, res):
                             found = True
                             break
