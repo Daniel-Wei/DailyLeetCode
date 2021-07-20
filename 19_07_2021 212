@@ -1,56 +1,75 @@
 # 212. Word Search II
 
+*** Given an m x n board of characters and a list of strings words, return all words on the board.
+
+*** Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. 
+    The same letter cell may not be used more than once in a word.
+    
+    
+# Example: 
+*** Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+*** Output: ["eat","oath"]
+
+*** My Own BackTracking: Time Limit Exceed *** 
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
             
-        def backtrack(pos, word, index, res):
+        def backtrack(pos, last_pos, word, index, res):
             if index == len(word):
-                res += [word]
+                res.add(word)
                 return True
             neighbours = []
-            if pos[0] == 0:
-                if pos[1] == 0:
-                    neighbours += [[0, 1], [1, 0]]
-                elif pos[1] == len(board[0]) - 1:
-                    neighbours += [[0, pos[1] - 1], [1, pos[1]]]
+            if len(board[0]) == 1:
+                if pos[0] == 0:
+                    neighbours += [[1, 0]]
+                elif pos[0] == len(board) - 1:
+                    neighbours += [[pos[0] - 1, 0]]
                 else:
-                    neighbours += [[0, pos[1] - 1], [0, pos[1] + 1], [1, pos[1]]]
-            elif pos[0] == len(board) - 1:
-                if pos[1] == 0:
-                    neighbours += [[pos[0] - 1, 0], [pos[0], 1]]
-                elif pos[1] == len(board[0]) - 1:
-                    neighbours += [[pos[0], pos[1] - 1], [pos[0] - 1, pos[1]]]
-                else:
-                    neighbours += [[pos[0], pos[1] - 1], [pos[0], pos[1] + 1], [pos[0] - 1, pos[1]]]
-        
+                    neighbours += [[pos[0] - 1, 0], [pos[0] + 1, 0]]
             else:
-                if pos[1] == 0:
-                    neighbours += [[pos[0] + 1, 0], [pos[0] - 1, 0], [pos[0], 1]]
-                elif pos[1] == len(board[0]) - 1:
-                    neighbours += [[pos[0] - 1, pos[1]], [pos[0], pos[1] - 1], [pos[0] + 1, pos[1]]]
+                
+                if pos[0] == 0:
+                    if pos[1] == 0:
+                        neighbours += [[0, 1], [1, 0]]
+                    elif pos[1] == len(board[0]) - 1:
+                        neighbours += [[0, pos[1] - 1], [1, pos[1]]]
+                    else:
+                        neighbours += [[0, pos[1] - 1], [0, pos[1] + 1], [1, pos[1]]]
+                elif pos[0] == len(board) - 1:
+                    if pos[1] == 0:
+                        neighbours += [[pos[0] - 1, 0], [pos[0], 1]]
+                    elif pos[1] == len(board[0]) - 1:
+                        neighbours += [[pos[0], pos[1] - 1], [pos[0] - 1, pos[1]]]
+                    else:
+                        neighbours += [[pos[0], pos[1] - 1], [pos[0], pos[1] + 1], [pos[0] - 1, pos[1]]]
+        
                 else:
-                    neighbours += [[pos[0] - 1, pos[1]], [pos[0] + 1, pos[1]], [pos[0], pos[1] - 1], [pos[0], pos[1] + 1]]
+                    if pos[1] == 0:
+                        neighbours += [[pos[0] + 1, 0], [pos[0] - 1, 0], [pos[0], 1]]
+                    elif pos[1] == len(board[0]) - 1:
+                        neighbours += [[pos[0] - 1, pos[1]], [pos[0], pos[1] - 1], [pos[0] + 1, pos[1]]]
+                    else:
+                        neighbours += [[pos[0] - 1, pos[1]], [pos[0] + 1, pos[1]], [pos[0], pos[1] - 1], [pos[0], pos[1] + 1]]
             
             for i in range(len(neighbours)):
-                if board[neighbours[i][0]][neighbours[i][1]] == word[index]:
-                    if backtrack([neighbours[i][0], neighbours[i][1]], word, index + 1, res):
+                if board[neighbours[i][0]][neighbours[i][1]] == word[index] and [neighbours[i][0], neighbours[i][1]] != last_pos:
+                    if backtrack([neighbours[i][0], neighbours[i][1]], pos, word, index + 1, res):
                         return True
             
             return False
         
-        res = []
+        res = set()
         found = False
         for word in words:
             for i in range(len(board)):
                 for k in range(len(board[i])):
-                    if board[i][k] == word[0] and (len(board) >= len(word) or len(board[0]) >= len(word)):
-                        if backtrack([i, k], word, 1, res):
+                    if board[i][k] == word[0] and len(board) * len(board[i]) >= len(word):
+                        if backtrack([i, k], None, word, 1, res):
                             found = True
                             break
                 if found:
                     found = False
                     break
-                
-        return res
-            
+        return list(res)
+        
         
