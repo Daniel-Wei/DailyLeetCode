@@ -1,0 +1,79 @@
+# import operator
+# class Solution:
+#     def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
+#         memo = [0  for i in range(k)]
+#         jobs = sorted(jobs, reverse= True)
+#         for ele in jobs:
+#             min_index, min_value = min(enumerate(memo), key=operator.itemgetter(1))
+#             memo[min_index] += ele
+            
+#         return max(memo)
+    
+
+
+# class Solution:
+#     def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
+#         memo = [0  for i in range(k)]
+#         res = []
+        
+#         def backtrack(jobs, index, memo, res):
+#             if index == len(jobs):
+#                 res += [max(memo)]
+#                 return None
+#             for i in range(k):
+#                 temp = memo[i]
+#                 memo[i] += jobs[index]
+#                 backtrack(jobs, index + 1, memo, res)
+#                 memo[i] = temp
+                
+#         backtrack(jobs, 0, memo, res)
+#         return min(res)
+    
+    
+    
+    
+    
+class Solution:
+    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
+        if k >= len(jobs):
+            return max(jobs)
+        
+        if k == 1:
+            return sum(jobs)
+        
+        
+        # jobs = sorted(jobs, reverse = True) 
+        # self.min_time = sum(jobs[: len(jobs)  - len(jobs)//k])
+        # maxi = sum(jobs[: len(jobs)  - len(jobs)//k - 1])
+#         if len(jobs) < 2*k:
+#             for i in range(k):
+#                 memo[i] += jobs[i]
+#             jobs = jobs[k:]
+            
+#         self.min_time = max(memo) + sum(jobs)
+        # rest = sum(jobs[ : len(jobs) - len(jobs) // k])
+        
+       
+        def backtrack(index, curMax):
+            nonlocal ans
+            
+            if curMax >= ans:
+                return ans
+            
+            if index == len(jobs):
+                ans = max(memo)
+                return None
+            
+            timeSet = set()
+            for i in range(k):
+                if memo[i] not in timeSet:
+                    memo[i] += jobs[index]
+                    backtrack(index + 1, max(memo))
+                    memo[i] -= jobs[index]
+                    
+                    timeSet.add(memo[i])
+             
+        memo = [0  for i in range(k)]
+        ans = sum(jobs)
+        backtrack(0, 0)
+        return ans
