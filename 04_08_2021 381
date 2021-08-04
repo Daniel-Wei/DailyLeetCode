@@ -1,0 +1,115 @@
+# 381. Insert Delete GetRandom O(1) - Duplicates allowed
+
+# Implement the RandomizedCollection class:
+
+  ** RandomizedCollection() Initializes the RandomizedCollection object.
+  ** bool insert(int val) Inserts an item val into the multiset if not present. Returns true if the item was not present, false otherwise.
+  ** bool remove(int val) Removes an item val from the multiset if present. Returns true if the item was present, false otherwise. Note that if val has multiple occurrences in the multiset, we only remove one of them.
+  ** int getRandom() Returns a random element from the current multiset of elements (it's guaranteed that at least one element exists when this method is called). The probability of each element being returned is linearly related to the number of same values the multiset contains.
+
+# You must implement the functions of the class such that each function works in average O(1) time complexity.
+
+
+*** My Own Solution: Change dict[val] value, using maths for return rate ***
+# import random
+# class RandomizedCollection:
+
+#     def __init__(self):
+#         """
+#         Initialize your data structure here.
+#         """
+#         self.dict = dict()
+        
+
+#     def insert(self, val: int) -> bool:
+#         """
+#         Inserts a value to the collection. Returns true if the collection did not already contain the specified element.
+#         """
+#         if val in self.dict:
+#             self.dict[val] += 1
+#             return False
+#         else:
+#             self.dict[val] = 1
+#             return True
+        
+
+#     def remove(self, val: int) -> bool:
+#         """
+#         Removes a value from the collection. Returns true if the collection contained the specified element.
+#         """
+#         if val in self.dict:
+#             self.dict[val] -= 1
+#             if self.dict[val] == 0:
+#                 self.dict.pop(val)
+#             return True
+#         return False
+        
+
+#     def getRandom(self) -> int:
+#         """
+#         Get a random element from the collection.
+#         """
+#         target = random.randint(0, sum(self.dict.values())) 
+#         tot = 0
+#         self.dict = dict(sorted(self.dict.items(), key=lambda item: item[1]))
+#         for k, v in self.dict.items():
+#             tot += v
+#             if tot >= target:
+#                 return k
+
+
+
+
+*** LeetCode Official Solution: Using defaultdict() ***
+
+# defaultdict: 
+from collections import defaultdict
+from random import choice
+
+class RandomizedCollection:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.lst = []
+        self.idx = defaultdict(set)
+
+
+    def insert(self, val: int) -> bool:
+        """
+        Inserts a value to the collection. Returns true if the collection did not already contain the specified element.
+        """
+        self.idx[val].add(len(self.lst))
+        self.lst.append(val)
+        return len(self.idx[val]) == 1
+
+
+    def remove(self, val: int) -> bool:
+        """
+        Removes a value from the collection. Returns true if the collection contained the specified element.
+        """
+        if not self.idx[val]: return False
+        remove, last = self.idx[val].pop(), self.lst[-1]
+        self.lst[remove] = last
+        self.idx[last].add(remove)
+        self.idx[last].discard(len(self.lst) - 1)
+
+        self.lst.pop()
+        return True
+
+
+    def getRandom(self) -> int:
+        """
+        Get a random element from the collection.
+        """
+        return choice(self.lst)
+
+        
+
+
+# Your RandomizedCollection object will be instantiated and called as such:
+# obj = RandomizedCollection()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()
