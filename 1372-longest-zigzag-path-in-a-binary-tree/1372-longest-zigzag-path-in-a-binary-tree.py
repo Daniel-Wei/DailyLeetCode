@@ -34,8 +34,7 @@ class Solution:
                 left = self.track(root.left, 1, 0)
             if root.right is not None:
                 right = self.track(root.right, 1, 1)
-            
-            
+        
             return max(left, right)
     
         
