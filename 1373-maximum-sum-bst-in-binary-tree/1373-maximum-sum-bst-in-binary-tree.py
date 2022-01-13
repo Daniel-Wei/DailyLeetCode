@@ -15,9 +15,12 @@ class Solution:
         
         return self.ans
     
+    # return (low, high, sum, isBST)
     def dfsBST(self, node) -> tuple:
         isBST = False
         
+        # null node的最小值很大 一定大于上一个node
+        # null node的最大值很小 一定小于上一个node
         if node is None:
             return(1e9, -1e9, 0, True)
         
@@ -31,30 +34,5 @@ class Solution:
             isBST = True
         self.ans = max(self.ans, currSum)
         
-        return (min(left[0], node.val), max(right[1], node.val), currSum, isBST)
-            
-            
-            
-            
-        
-#min max 只是为了null node的情况
-    
-# null node的最小值很大 一定大于上一个node
-# null node的最大值很小 一定小于上一个node
-
-# return (low, high, sum, isBST)
-        
-        
-            
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+        # min max 只是为了null node的情况
+        return (min(left[0], node.val), max(right[1], node.val), currSum, isBST)              
