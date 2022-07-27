@@ -23,7 +23,6 @@ class Solution:
                 curr = curr.next
                 if list1.val <= list2.val:
                     curr.val = list1.val
-                    
                     list1 = list1.next
                     
                 else:
