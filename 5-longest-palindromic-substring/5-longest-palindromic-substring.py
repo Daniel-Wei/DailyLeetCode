@@ -21,8 +21,7 @@ class Solution:
                 start = i - (curr-1) // 2 
                 
 
-            else:
-                continue
+            
                 
         return s[start : start + maxLen]
 
