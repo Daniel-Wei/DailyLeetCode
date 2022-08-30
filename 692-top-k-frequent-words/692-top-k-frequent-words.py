@@ -26,12 +26,13 @@ class Solution:
 
         for word in set(words):
             res += [[word, freq[word]]]
-            
+        
+        
+#       因为最终的排列顺序是先freq再lexicographical order
+#       所以sorted的使用顺序是先lexicographical order再freq
         res = sorted(res, key = lambda x : x[0])
-        print(res)
         res = sorted(res, key = lambda x: x[1], reverse = True)
         
-        print(res)
         return [item[0] for item in res[:k]]
             
         
