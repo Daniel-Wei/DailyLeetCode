@@ -1,7 +1,5 @@
 public class Solution {
     public int CoinChange(int[] coins, int amount) {
-        
-        
         int[]dpMemo = new int[amount + 1];
         
         for(int i = 1; i< dpMemo.Length; i++){
@@ -17,8 +15,6 @@ public class Solution {
         
         dpMemo[0] = 0;
         
-       
-        
         for(int i = 1; i <= amount; i++){
             Array.ForEach(coins, c => {
                 if(c <= i){
@@ -33,13 +29,6 @@ public class Solution {
                 
                 
             });
-            
-//             Array.ForEach(dpMemo, m => {
-//                     Console.Write(m);
-//                     Console.Write(" ");
-//                 });
-//                 Console.WriteLine();
-            
           
         }
         
