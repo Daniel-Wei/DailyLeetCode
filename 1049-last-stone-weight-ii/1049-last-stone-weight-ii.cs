@@ -10,8 +10,8 @@ public class Solution {
             int curr = stones[i];
             
             foreach(int sum in dp[i - 1]){
-                dp[i].Add(Math.Abs(curr - sum));
-                dp[i].Add(Math.Abs(curr + sum));
+                dp[i].Add(Math.Abs(curr - sum)); //Add to the group of stones[0]
+                dp[i].Add(Math.Abs(curr + sum)); //Not add to the group of stones[0]
             };
         }
         
