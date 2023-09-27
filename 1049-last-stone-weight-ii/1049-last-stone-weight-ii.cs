@@ -2,8 +2,7 @@ public class Solution {
     public int LastStoneWeightII(int[] stones) {
         
         HashSet<int>[] dp = new HashSet<int>[stones.Length];
-        dp[0] = new HashSet<int>();
-        dp[0].Add(stones[0]);
+        dp[0] = new HashSet<int>(){stones[0]};
       
         for(int i = 1; i < stones.Length; i++){
             dp[i] = new HashSet<int>();
