@@ -8,7 +8,6 @@ public class Solution {
         
         int[]used = new int[maxChoosableInteger + 1];
         
-        
         if((1 + maxChoosableInteger) * maxChoosableInteger / 2 < desiredTotal ){
             return false;
         }
@@ -24,6 +23,7 @@ public class Solution {
         
         string chosenSerialization = string.Join("",chosen);
        
+        //剪枝
         if (cache.ContainsKey(chosenSerialization)) {
             return cache[chosenSerialization];
         }
@@ -32,7 +32,9 @@ public class Solution {
             if (chosen[i] == 1) {
                 continue;
             }
+            
             chosen[i] = 1;
+            //if player two loses == player one would get a force win
             if (!canIWinWithSituation(maxChoosableInteger, curDesiredTotal - i, chosen)) {
                 cache[chosenSerialization]= true;
                 chosen[i] = 0;
