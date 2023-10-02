@@ -40,7 +40,7 @@ public class Solution {
                 chosen[i] = 0;
                 return true;
             }
-            chosen[i] = 0;
+            chosen[i] = 0; //flip back to make sure each time only changes one
         }
         cache[chosenSerialization] = false;
         return false;
