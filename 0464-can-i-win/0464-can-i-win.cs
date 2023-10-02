@@ -12,10 +12,10 @@ public class Solution {
             return false;
         }
         
-        return canIWinWithSituation(maxChoosableInteger, desiredTotal, used);
+        return canIWinWithSituation(desiredTotal, used);
     }
     
-   private bool canIWinWithSituation(int maxChoosableInteger, int curDesiredTotal, int[] chosen) {
+   private bool canIWinWithSituation(int curDesiredTotal, int[] chosen) {
         
         if (curDesiredTotal <= 0) { 
             return false;
@@ -28,14 +28,14 @@ public class Solution {
             return cache[chosenSerialization];
         }
         
-        for (int i = 1; i <= maxChoosableInteger; i++) {
+        for (int i = 1; i < chosen.Length; i++) {
             if (chosen[i] == 1) {
                 continue;
             }
             
             chosen[i] = 1;
             //if player two loses == player one would get a force win
-            if (!canIWinWithSituation(maxChoosableInteger, curDesiredTotal - i, chosen)) {
+            if (!canIWinWithSituation(curDesiredTotal - i, chosen)) {
                 cache[chosenSerialization]= true;
                 chosen[i] = 0;
                 return true;
