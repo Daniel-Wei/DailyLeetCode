@@ -22,7 +22,7 @@ public class Solution {
             return false;
         }
         
-        String chosenSerialization = string.Join("",chosen);
+        string chosenSerialization = string.Join("",chosen);
        
         if (cache.ContainsKey(chosenSerialization)) {
             return cache[chosenSerialization];
