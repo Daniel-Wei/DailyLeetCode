@@ -1,4 +1,5 @@
 public class Solution {
+//策略：取first还是last 目的在于使remaining piles 最大可能和最小
     public bool StoneGame(int[] piles) {
         int totalSum = piles.Sum();
         int n = piles.Length;
@@ -12,6 +13,7 @@ public class Solution {
                 if(i == j){
                     dp[i, i] = piles[i];
                 }else{
+                    //从piles[j]到piles[i]，max = max(total - dp[j+1, i], total - dp[j, i-1])
                     dp[j, i] = Math.Max(currSum - dp[j+1, i], currSum - dp[j, i-1]);
                 }
             }
