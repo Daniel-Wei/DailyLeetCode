@@ -26,6 +26,7 @@ public class Solution {
             return false;
         }
         
+        // debug
         // Console.WriteLine(row);
         // Console.WriteLine(col);
         // Console.WriteLine(index);
@@ -35,20 +36,19 @@ public class Solution {
         
         board[row][col] = '#';
         
+        bool res = true;
+        
         if(word[index] != curr){
-            board[row][col] = curr;
-            
-            return false;
+            res = false;
         }else{
-            
-                bool res =  BackTrack(board, index + 1, row + 1, col, m, n, word) || BackTrack(board, index + 1, row - 1, col, m, n, word)
-                    || BackTrack(board, index + 1, row, col + 1, m, n, word) || BackTrack(board, index + 1, row, col - 1, m, n, word);
-            if(!res){
-                board[row][col] = curr;
-            }
-            
-            return res;
-            
+            res =  BackTrack(board, index + 1, row + 1, col, m, n, word) || BackTrack(board, index + 1, row - 1, col, m, n, word)
+                || BackTrack(board, index + 1, row, col + 1, m, n, word) || BackTrack(board, index + 1, row, col - 1, m, n, word);
         }
+        
+        if(!res){
+            board[row][col] = curr;
+        }
+        
+        return res;
     }
 }
