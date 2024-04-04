@@ -5,12 +5,12 @@ public class Solution {
         }
         
         int target = matchsticks.Sum() / 4;
-        List<int> lengths = new List<int>();
+        int[] lengths = [0, 0, 0, 0];
         
         return Helper(matchsticks, lengths, target, 0);
     }
     
-    private bool Helper(int[] matchsticks, List<int> lengths, int target, int index){
+    private bool Helper(int[] matchsticks, int[]lengths, int target, int index){
         
         //base case
         if(index == matchsticks.Length){
@@ -21,24 +21,19 @@ public class Solution {
         
         HashSet<int> distincts = new HashSet<int>();
         
-        for(int i = 0; i < lengths.Count; i++){
-            int[]arr = lengths.ToArray();
-            int l = arr[i];
+        for(int i = 0; i < lengths.Length; i++){
+            int l = lengths[i];
             
             if(!distincts.Contains(l) && l + curr <= target){
                 distincts.Add(l);
-                arr[i] += curr;
+                lengths[i] += curr;
                 
-                if(arr[i] <= target && Helper(matchsticks, arr.ToList(), target, index + 1)){
+                if(Helper(matchsticks, lengths, target, index + 1)){
                     return true;
                 }
-            }
-        }
-        
-        if(lengths.Count < 4){
-            lengths.Add(curr);
-            if(Helper(matchsticks, lengths, target, index + 1)){
-                return true;
+                
+                lengths[i] -= curr;
+                
             }
         }
         
