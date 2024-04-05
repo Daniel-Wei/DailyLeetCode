@@ -30,8 +30,9 @@ public class Solution{
         }
         
         char[]chars = sb.ToString().ToCharArray();
-        Array.Reverse(chars);
+        
         //FILO
+        Array.Reverse(chars);
         return new string(chars);
     }
 }
