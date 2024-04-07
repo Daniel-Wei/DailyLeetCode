@@ -1,41 +1,58 @@
-class Solution {
-    public static String minRemoveToMakeValid(String s) {
-        StringBuffer str = new StringBuffer(s);
-        Stack<Character> stkLeft = new Stack<>();
-        Stack<Character> stkRight = new Stack<>();
-        //Forward Traversal
-        for(int i=0;i<str.length();i++) {
-        	char c = str.charAt(i);
-        	if(c!='(' && c!=')') continue;
-        	if(c=='(') {
-        		stkRight.push(')');
-        	}
-        	else {
-        		if(stkRight.isEmpty()) {
-        			str.deleteCharAt(i);
-        			i--;
-        		}
-        		else {
-        			stkRight.pop();
-        		}
-        	}
+public class Solution {
+    public string MinRemoveToMakeValid(string s) {
+        Stack<char> stack = new Stack<char>();
+        int o = 0;
+        int c = 0;
+        string res = "";
+        
+        foreach(char ch in s){
+            if(ch == '('){
+                o += 1;
+            }
+            
+            if(ch == ')'){
+                c += 1;
+            }
+            
+            
+            if(ch == ')' && c > o){
+                c -= 1;
+                continue;
+            }else{
+                stack.Push(ch);
+            }
         }
-        for(int i=str.length()-1;i>=0;i--) {
-        	char c = str.charAt(i);
-        	if(c!='(' && c!=')') continue;
-        	if(c==')') {
-        		stkLeft.push('(');
-        	}
-        	else {
-        		if(stkLeft.isEmpty()) {
-        			str.deleteCharAt(i);
-        			
-        		}
-        		else {
-        			stkLeft.pop();
-        		}
-        	}
+        
+        Stack<char> newStack = new Stack<char>();
+        o = 0;
+        c = 0;
+        
+        while(stack.Any()){
+            var curr = stack.Pop();
+            
+            if(curr == '('){
+                o += 1;
+            }
+            
+            if(curr == ')'){
+                c += 1;
+            }
+            
+            
+            if(curr == '(' && o > c){
+                o -= 1;
+                continue;
+            }else{
+                newStack.Push(curr);
+            }
         }
-        return str.toString();
+        
+        while(newStack.Any()){
+            res += newStack.Pop();
+        }
+        
+        return res;
+        
+        
     }
 }
