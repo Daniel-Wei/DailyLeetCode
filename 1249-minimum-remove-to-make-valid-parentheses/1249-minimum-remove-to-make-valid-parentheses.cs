@@ -39,6 +39,7 @@ public class Solution {
 //         }
 //         return res;
         
+        // Solution Two: directly construct res, saved time
         var res = new StringBuilder();
         var openPos = new Stack<int>();
         int i = 0;
