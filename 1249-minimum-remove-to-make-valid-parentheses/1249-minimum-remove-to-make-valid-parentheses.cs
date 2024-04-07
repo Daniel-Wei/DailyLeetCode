@@ -1,5 +1,6 @@
 public class Solution {
     public string MinRemoveToMakeValid(string s) {
+        // Solution One: Almost TLE
         Stack<char> stack = new Stack<char>();
         int o = 0;
         int c = 0;
@@ -23,36 +24,24 @@ public class Solution {
             }
         }
         
-        Stack<char> newStack = new Stack<char>();
-        o = 0;
-        c = 0;
         
+        // Remove remaining open parentheses
+        // 剪枝：不要在反响重复上面的过程
         while(stack.Any()){
-            var curr = stack.Pop();
-            
-            if(curr == '('){
-                o += 1;
-            }
-            
-            if(curr == ')'){
-                c += 1;
-            }
-            
-            
+            var curr = stack.Peek();
+            stack.Pop();
             if(curr == '(' && o > c){
-                o -= 1;
-                continue;
+                o --;
             }else{
-                newStack.Push(curr);
+                res += curr;
             }
+           
         }
         
-        while(newStack.Any()){
-            res += newStack.Pop();
-        }
-        
-        return res;
-        
-        
+        char[]chars = res.ToCharArray();
+
+        //FILO
+        Array.Reverse(chars);
+        return new string(chars);
     }
 }
