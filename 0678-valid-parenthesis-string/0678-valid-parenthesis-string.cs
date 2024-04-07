@@ -23,6 +23,8 @@ public class Solution {
             return o == 0;
         }
         
+        // 利用dp进行剪枝
+        // -1: undefined; 0: false; 1: true
         if(dp[index, o] != -1){
             return dp[index, o] == 1;
         }
@@ -41,7 +43,7 @@ public class Solution {
                 || Helper(s, index + 1, o, dp);
         }
         
-        
+        // 利用dp进行剪枝
         dp[index, o] = isValid ? 1: 0;
         
         return isValid;
