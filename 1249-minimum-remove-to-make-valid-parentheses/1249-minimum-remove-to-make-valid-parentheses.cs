@@ -1,5 +1,8 @@
 public class Solution {
     public string MinRemoveToMakeValid(string s) {
+        
+        
+        // Solution One: TLE
 //         Stack<int> stack = new Stack<int>();
 //         char[]chars = s.ToCharArray();
 //         string res = "";
