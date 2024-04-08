@@ -1,4 +1,7 @@
 public class Solution {
+    
+    // Tracking exact selections or number of sending to A/B is comsuming and difficuclt
+    // Instead, all sending to A first, then sending half to B with the largest minimisation
     public int TwoCitySchedCost(int[][] costs) {
        
         // All send to A
