@@ -17,7 +17,6 @@ public class Solution {
                     hs.Add(s[j]);
                     j++; 
                 }
-                
             }
             i = j;
         }
