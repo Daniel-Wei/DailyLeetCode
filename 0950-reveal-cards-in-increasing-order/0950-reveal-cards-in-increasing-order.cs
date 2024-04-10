@@ -1,6 +1,6 @@
 public class Solution {
+    // Use Queue to reverse the whole game process
     public int[] DeckRevealedIncreasing(int[] deck) {
-        
         if(deck.Length == 1){
             return deck;
         }
