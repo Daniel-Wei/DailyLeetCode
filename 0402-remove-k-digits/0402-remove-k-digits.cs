@@ -1,10 +1,5 @@
 public class Solution {
     public string RemoveKdigits(string num, int k) {
-        
-        if(k == num.Length){
-            return "0";
-        }
-        
         Stack<char>s = new Stack<char>();
         s.Push(num[0]);
         
