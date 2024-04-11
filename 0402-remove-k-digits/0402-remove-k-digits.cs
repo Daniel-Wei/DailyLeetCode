@@ -11,6 +11,7 @@ public class Solution {
         for(int i = 1; i < num.Length; i++){
             char curr = num[i];
             
+            //Push the smaller number to as high digit as possible
             while(k > 0 && s.Any() && s.Peek() > curr){
                 s.Pop();
                 k --;
