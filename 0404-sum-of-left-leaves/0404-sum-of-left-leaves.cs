@@ -17,7 +17,6 @@ public class Solution {
     }
     
     private int Helper(TreeNode node, int total, bool left){
-        
         //base case
         if(node.left == null && node.right == null){
             if(left){
@@ -26,18 +25,14 @@ public class Solution {
                 return total;
             }
         }
-        
       
         if(node.left != null){
             total = Helper(node.left, total, true);
         }
         
-        
         if(node.right != null){
             total = Helper(node.right, total, false);
         }
-        
-        
         
         return total;
     }
