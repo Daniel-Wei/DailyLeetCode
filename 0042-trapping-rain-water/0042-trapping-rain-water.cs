@@ -20,8 +20,6 @@ class Solution {
             }
         }
         
-        
-        
         l = height.Length - 2;
         r = height.Length - 1;
         
