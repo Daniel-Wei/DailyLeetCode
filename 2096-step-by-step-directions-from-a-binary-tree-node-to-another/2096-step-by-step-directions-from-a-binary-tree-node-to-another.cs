@@ -13,8 +13,8 @@
  */
 public class Solution {
     public string GetDirections(TreeNode root, int startValue, int destValue) {
-        // Dictionary<int, string> dict = new Dictionary<int, string>();
-        // ToDict(root, "", dict);
+        // string pathToStart = Helper(root, "", startValue);
+        // string pathToDest = Helper(root, "", destValue);
         
         StringBuilder start = new StringBuilder();
         StringBuilder dest = new StringBuilder();
@@ -23,9 +23,8 @@ public class Solution {
         string pathToStart = new string(start.ToString().Reverse().ToArray());
         string pathToDest = new string(dest.ToString().Reverse().ToArray());
         
-        
+        // Remove common path
         int i = 0;
-        
         while(i < pathToStart.Length && i < pathToDest.Length){
             if(pathToStart[i] == pathToDest[i]){
                 i++;
@@ -37,55 +36,36 @@ public class Solution {
         return new string('U', pathToStart.Length - i) + pathToDest.Substring(i);
     }
     
-    private bool Find(TreeNode root, int val, StringBuilder sb) {
-        if (root.val == val) return true;
-        if (root.left != null && Find(root.left, val, sb)) { 
+    private bool Find(TreeNode curr, int val, StringBuilder sb) {
+        if (curr.val == val) return true;
+        if (curr.left != null && Find(curr.left, val, sb)) { 
             sb.Append("L");
             return true;
         }
-        if (root.right != null && Find(root.right, val, sb))  {
+        if (curr.right != null && Find(curr.right, val, sb))  {
             sb.Append("R");
             return true;
         }
         return false;
     }
     
-//     private string Helper(TreeNode curr, string currPath, int val, Dictionary<int, string> dict){
-//         if(!dict.ContainsKey(curr.val)){
-//             dict.Add(curr.val, currPath);
-//         }
+    private string Helper(TreeNode curr, string currPath, int val){
+        if(curr.val == val){
+            return currPath;
+        }
         
-//         if(curr.val != val){
-//             if(curr.left != null){
-//                 string res = Helper(curr.left, currPath + "L", val, dict);
-//                 if(res != null){
-//                     return res;
-//                 }
-//             }
-//             if(curr.right != null){
-//                 string res = Helper(curr.right, currPath + "R", val, dict);
-//                 if(res != null){
-//                     return res;
-//                 }
-//             }
-//         }else{
-//             return currPath;
-//         }
-        
-//         return null;
-//     }
-    
-//     private void ToDict(TreeNode curr, string currPath, Dictionary<int, string> dict){
-//         if(!dict.ContainsKey(curr.val)){
-//             dict.Add(curr.val, currPath);
-//         }
-        
-//         if(curr.left != null){
-//             ToDict(curr.left, currPath + "L", dict);
-//         }
-        
-//         if(curr.right != null){
-//             ToDict(curr.right, currPath + "R", dict);
-//         }
-//     }
+        if(curr.left != null){
+            string res = Helper(curr.left, currPath + "L", val);
+            if(res != null){
+                return res;
+            }
+        }
+        if(curr.right != null){
+            string res = Helper(curr.right, currPath + "R", val);
+            if(res != null){
+                return res;
+            }
+        }
+        return null;
+    }
 }
