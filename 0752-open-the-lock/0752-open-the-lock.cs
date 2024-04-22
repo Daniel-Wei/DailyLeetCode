@@ -1,37 +1,68 @@
-class Solution {
-    public int openLock(String[] deadends, String target) {
-        Set<String> begin = new HashSet<>();
-        Set<String> end = new HashSet<>();
-        Set<String> deads = new HashSet<>(Arrays.asList(deadends));
-        begin.add("0000");
-        end.add(target);
+public class Solution {
+    public int OpenLock(string[] deadends, string target) {
+        string start = "0000";
+        Stack<string> s = new Stack<string>();
+        HashSet<string> visited = new HashSet<string>();
+        visited.Add(start);
+        s.Push(start);
+        
+        HashSet<string> deads = new HashSet<string>(deadends);
+        
+        if(deads.Contains(target) || deads.Contains(start)){
+            return -1;
+        }
+        
         int level = 0;
-        Set<String> temp;
-        while(!begin.isEmpty() && !end.isEmpty()) {
-            if (begin.size() > end.size()) {
-                temp = begin;
-                begin = end;
-                end = temp;
+        
+        while(s.Any()){
+            int count = s.Count();
+            List<string> currLevel = new List<string>();
+            
+            // Iterate curr level nodes
+            for(int i = 0; i < count; i++){
+                string curr = s.Pop();
+                
+                if(curr == target){
+                    return level;
+                }
+                
+                currLevel.Add(curr);
+
+                visited.Add(curr);
             }
-            temp = new HashSet<>();
-            for(String s : begin) {
-                if(end.contains(s)) return level;
-                if(deads.contains(s)) continue;
-                deads.add(s);
-                StringBuilder sb = new StringBuilder(s);
-                for(int i = 0; i < 4; i ++) {
-                    char c = sb.charAt(i);
-                    String s1 = sb.substring(0, i) + (c == '9' ? 0 : c - '0' + 1) + sb.substring(i + 1);
-                    String s2 = sb.substring(0, i) + (c == '0' ? 9 : c - '0' - 1) + sb.substring(i + 1);
-                    if(!deads.contains(s1))
-                        temp.add(s1);
-                    if(!deads.contains(s2))
-                        temp.add(s2);
+            
+            // Add next level nodes
+            foreach(string curr in currLevel){
+                List<string> nexts = GetNext(curr);
+
+                foreach(string next in nexts){
+                    if(!visited.Contains(next) && !deads.Contains(next)){
+                        visited.Add(next);
+                        s.Push(next);
+                    }
                 }
             }
-            level ++;
-            begin = temp;
+           
+            
+            level++;
         }
+        
         return -1;
+    }
+    
+    private List<string> GetNext(string curr){
+        List<string>next = new List<string>();
+            
+        for(int i = 0; i < 4; i++){
+            char[] charArray1 = curr.ToCharArray();
+            charArray1[i] = charArray1[i] == '9' ? '0' : (char)((int) charArray1[i] + 1);
+            next.Add(new string(charArray1));
+
+            char[] charArray2 = curr.ToCharArray();
+            charArray2[i] = charArray2[i] == '0' ? '9' : (char) ((int)charArray2[i] - 1);
+            next.Add(new string(charArray2));
+        }
+        
+        return next;
     }
 }
