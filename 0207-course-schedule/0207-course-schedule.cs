@@ -1,55 +1,41 @@
 public class Solution {
-    
-    Dictionary<int,IList<int>> graph = new Dictionary<int, IList<int>>();
-       
     public bool CanFinish(int numCourses, int[][] prerequisites) {
-                              
-        for(int i=0;i<numCourses;i++)
-        {
-            graph[i] = new List<int>();
-        }             
-                    
-        var visited = new int[numCourses];
-            
-        for(int i=0; i < prerequisites.Length; i++)            
-        {              
-          graph[prerequisites[i][1]].Add(prerequisites[i][0]);           
-            
-        }
-
-        for(int i=0; i<numCourses; i++)
-        {
-          if(!DFS(visited,i))
-                    return false;
+        
+        List<int>[] arr = new List<int>[numCourses];
+        bool[] visited = new bool[numCourses];
+        bool[] tmpVisited = new bool[numCourses];
+        
+        for(int i = 0; i < numCourses; ++i){
+            arr[i] = new List<int>();
         }
         
-        return true;        
+        for(int i = 0; i < prerequisites.GetLength(0); ++i){
+            arr[prerequisites[i][1]].Add(prerequisites[i][0]);
+        }
+        
+        for(int i = 0; i < numCourses; ++i){
+            if(!Visit(arr, visited, tmpVisited, i))
+                return false;
+        }
+        
+        return true;
     }
     
-    private bool DFS(int[] visited, int node)
-    {   
+    private bool Visit(List<int>[] graph, bool[] visited, bool[] tmpVisited, int node){
+        if(tmpVisited[node])
+            return false;
+        if(visited[node])
+            return true;
         
-        visited[node] = 1;        
-                               
-                  
-        for(var i = 0; i < graph[node].Count; i++)
-        {                
-            if(visited[graph[node][i]] == 1)
-            {
+        tmpVisited[node] = true;
+        
+        foreach(int n in graph[node]){
+            if(!Visit(graph, visited, tmpVisited, n))
                 return false;
-            }
-            
-            if(visited[graph[node][i]] == 0)
-            {
-                if(!DFS(visited, graph[node][i]))
-                {
-                    return false;
-                }    
-            }                       
-            
         }
         
-        visited[node] = 2;
+        tmpVisited[node] = false;
+        visited[node] = true;
         return true;
     }
 }
