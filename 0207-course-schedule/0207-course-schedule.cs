@@ -1,27 +1,29 @@
 public class Solution {
     public bool CanFinish(int numCourses, int[][] prerequisites) {
         
-        List<int>[] arr = new List<int>[numCourses];
+        //With comfirmed number of nodes
+        //Better use Array rather than Dict/HashSet
+        List<int>[] g = new List<int>[numCourses];
         bool[] visited = new bool[numCourses];
         bool[] tmpVisited = new bool[numCourses];
         
         for(int i = 0; i < numCourses; ++i){
-            arr[i] = new List<int>();
+            g[i] = new List<int>();
         }
         
         for(int i = 0; i < prerequisites.GetLength(0); ++i){
-            arr[prerequisites[i][1]].Add(prerequisites[i][0]);
+            g[prerequisites[i][1]].Add(prerequisites[i][0]);
         }
         
         for(int i = 0; i < numCourses; ++i){
-            if(!Visit(arr, visited, tmpVisited, i))
+            if(!Dfs(g, visited, tmpVisited, i))
                 return false;
         }
         
         return true;
     }
     
-    private bool Visit(List<int>[] graph, bool[] visited, bool[] tmpVisited, int node){
+    private bool Dfs(List<int>[] graph, bool[] visited, bool[] tmpVisited, int node){
         if(tmpVisited[node])
             return false;
         if(visited[node])
@@ -30,7 +32,7 @@ public class Solution {
         tmpVisited[node] = true;
         
         foreach(int n in graph[node]){
-            if(!Visit(graph, visited, tmpVisited, n))
+            if(!Dfs(graph, visited, tmpVisited, n))
                 return false;
         }
         
