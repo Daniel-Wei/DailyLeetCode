@@ -1,12 +1,11 @@
 # DailyLeetCode
 ### 记录一下自己刷力扣。
 
-### Rank
-  | Tables   |      Are      |  Cool |
-  |----------|:-------------:|------:|
-  | col 1 is |  left-aligned | $1600 |
-  | col 2 is |    centered   |   $12 |
-  | col 3 is | right-aligned |    $1 |
+| Date | Rank | Rank Diff | Overall Diff | Easy | Easy Diff | Medium | Medium Diff | Hard | Hard Diff |
+|------|:----:|----------:|-------------:|-----:|----------:|-------:|------------:|-----:|----------:|
+|20/04/24|:----:|----------:|-------------:|-----:|----------:|-------:|------------:|-----:|----------:|
+| col 2 is |    centered   |   $12 |
+| col 3 is | right-aligned |    $1 |
 
   
   - 20/04/24: 723,321 | Easy: 024/788 | Medium: 0081/1639 | Hard: 016/696
