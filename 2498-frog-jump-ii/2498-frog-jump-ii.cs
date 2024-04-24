@@ -8,10 +8,7 @@
 
 public class Solution {
     public int MaxJump(int[] stones) {
-        if(stones.Length == 2){
-            return stones[1];
-        }
-        int res = 0;
+        int res = stones[1] - stones[0];
         
         for(int i = 1; i < stones.Length - 1; i++){
             res = Math.Max(res, stones[i+1] - stones[i-1]);
