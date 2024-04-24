@@ -1,3 +1,11 @@
+//Claim 1: It is optimal that we make use of all rocks: There is never a benefit of not including a rock in Path 1 or Path 2, //it is always positive or neutral.
+
+// Claim 2: It is never optimal to choose two consecutive rocks: If we choose rock_i, and rock_i+1, then rock_i+2 will have to do (rock_i+2)-(rock_i) work to return. Because the array is strictly increasing, it holds that (rock_i+2)-(rock_i) > (rock_i+1-rock_i)
+
+// 最佳方式是不skip 然而只能jump to any stone at most once
+// skip的越多 回来的时候牺牲越大
+// 所以每次只skip一个
+
 public class Solution {
     public int MaxJump(int[] stones) {
         if(stones.Length == 2){
@@ -8,15 +16,6 @@ public class Solution {
         for(int i = 1; i < stones.Length - 1; i++){
             res = Math.Max(res, stones[i+1] - stones[i-1]);
         }
-        
-//         int res = stones[stones.Length - 1];
-        
-//         for(int lastSkipped = 1; lastSkipped < stones.Length - 2; lastSkipped++){
-//             int curr = Math.Max(stones[lastSkipped + 1], diffs[lastSkipped + 1]);
-//             curr = Math.Max(curr, stones[stones.Length - 1] - stones[lastSkipped]);
-            
-//             res = Math.Min(res, curr);
-//         }
         
         return res;
     }
