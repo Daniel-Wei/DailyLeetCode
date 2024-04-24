@@ -1,6 +1,7 @@
 # DailyLeetCode
 ### 记录一下自己刷力扣。
 \
+
 \
 | Date | Rank | Rank Diff | Overall Diff | Easy | Easy Diff | Medium | Medium Diff | Hard | Hard Diff |
 |------|:----:|:---------:|:------------:|:----:|:---------:|:------:|:-----------:|:----:|:---------:|
