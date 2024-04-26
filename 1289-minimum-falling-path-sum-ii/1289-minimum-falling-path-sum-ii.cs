@@ -19,8 +19,6 @@ public class Solution {
                 }
                 
                 dp[i,j] += grid[i][j];
-                
-                
             }
         }
         
