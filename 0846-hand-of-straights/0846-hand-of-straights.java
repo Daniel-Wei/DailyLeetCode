@@ -1,20 +1,36 @@
-class Solution {
-    public boolean isNStraightHand(int[] hand, int W) {
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for(int i : hand){
-            minHeap.add(i);
-        }
-        while(minHeap.size() != 0) {
-            int start = minHeap.poll();
-            for(int j = 1; j < W; j++){
-                if(minHeap.remove(start + j)) {
-                    continue;
-                }
-                else {
-                    return false;
-                }
+public class Solution {
+    public bool IsNStraightHand(int[] hand, int groupSize) {
+        Dictionary<int, int> dict = new Dictionary<int, int>();
+        int min = hand.Min();
+        int max = hand.Max();
+        
+        foreach(int h in hand){
+            if(dict.ContainsKey(h)){
+                dict[h] += 1;
+            }else{
+                dict.Add(h, 1);
             }
         }
+        
+        
+        while(min <= max){
+            while(dict[min] != 0){
+                int k = 0;
+                while(k < groupSize){
+                    if(dict.ContainsKey(min + k) && dict[min + k] != 0){
+                        dict[min + k] -= 1; 
+                    }else{
+                        return false;
+                    }
+                    k++;
+                }
+            }
+            
+            while((!dict.ContainsKey(min) || dict[min] == 0) && min <= max){
+                min++;
+            }
+        }
+        
         return true;
     }
 }
