@@ -1,36 +1,28 @@
 public class Solution {
     public bool IsNStraightHand(int[] hand, int groupSize) {
-        Dictionary<int, int> dict = new Dictionary<int, int>();
-        int min = hand.Min();
-        int max = hand.Max();
-        
-        foreach(int h in hand){
-            if(dict.ContainsKey(h)){
-                dict[h] += 1;
-            }else{
-                dict.Add(h, 1);
-            }
+         
+        var dict = new Dictionary<int, int>();
+        foreach(var num in hand){
+            if(!dict.ContainsKey(num))
+                dict.Add(num, 0);
+            dict[num]++;
         }
-        
-        
-        while(min <= max){
-            while(dict[min] != 0){
-                int k = 0;
-                while(k < groupSize){
-                    if(dict.ContainsKey(min + k) && dict[min + k] != 0){
-                        dict[min + k] -= 1; 
-                    }else{
-                        return false;
-                    }
-                    k++;
+        while(dict.Count >= groupSize){
+            var min = dict.Keys.Min();
+            for(var i = 0; i < groupSize; i++){
+                if(dict.ContainsKey(min)){
+                    dict[min]--;
+                    if(dict[min] == 0)
+                        dict.Remove(min);
+                    min++;
+                }
+                else{
+                    return false;
                 }
             }
-            
-            while((!dict.ContainsKey(min) || dict[min] == 0) && min <= max){
-                min++;
-            }
         }
-        
+        if(dict.Count > 0)
+            return false;
         return true;
     }
 }
