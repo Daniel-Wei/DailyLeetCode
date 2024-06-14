@@ -1,6 +1,5 @@
 public class Solution {
     public int MinIncrementForUnique(int[] nums) {
-        HashSet<int> hs = new HashSet<int>();
         Array.Sort(nums);
         int res = 0;
         int prev = nums[0];
