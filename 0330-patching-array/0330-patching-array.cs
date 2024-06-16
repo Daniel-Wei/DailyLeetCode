@@ -7,7 +7,6 @@ public class Solution {
         int res = 0;
         
         while(currMax < n){
-            
             if(i < nums.Length && nums[i] <= currMax + 1){
                 currMax += nums[i];
                 i++;
