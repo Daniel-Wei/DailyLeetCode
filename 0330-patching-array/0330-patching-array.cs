@@ -1,7 +1,5 @@
 public class Solution {
     public int MinPatches(int[] nums, int n) {
-        Array.Sort(nums);
-        
         int i = 0;
         long currMax = 0;
         int res = 0;
