@@ -11,7 +11,6 @@ public class Solution {
         }
         
         tasks = tasks.OrderBy(t => t.Difficulty).ToList();
-        Array.Sort(worker);
         int res = 0;
         
         foreach(int w in worker){
