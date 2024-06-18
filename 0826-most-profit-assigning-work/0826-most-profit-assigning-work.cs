@@ -1,44 +1,32 @@
 public class Solution {
     public int MaxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {
+        int res = 0;
+        int minD = difficulty.Min();
+        int maxD = difficulty.Max();
+        int maxP = profit.Max();
         
-        List<Task> tasks = new List<Task>();
+        int[]dp = new int[maxD + 1];
         
         for(int i = 0; i < profit.Length; i++){
-            tasks.Add(new Task(){
-                Difficulty = difficulty[i],
-                Profit = profit[i]
-            });
+            // There could be multiple same difficulties with different profits.
+            dp[difficulty[i]] = Math.Max(dp[difficulty[i]], profit[i]);
         }
         
-        tasks = tasks.OrderBy(t => t.Difficulty).ToList();
-        int res = 0;
+        for(int i = 1; i < dp.Length; i++){
+            dp[i] = Math.Max(dp[i - 1], dp[i]);
+        }
         
+      
         foreach(int w in worker){
-            res += GetMaxProfit(tasks, w);
+            if(w < minD){
+                res += 0;
+            }else if(w > maxD){
+                res += maxP;
+            }else{
+                res += dp[w];
+            }
         }
         
         return res;
-    }
-    
-    private int GetMaxProfit(List<Task> tasks, int worker){
-        
-        if(worker < tasks[0].Difficulty){
-            return 0;
-        }
-        
-        int i = 0;
-        int maxProfit = -1;
-        
-        while (i < tasks.Count && tasks[i].Difficulty <= worker){
-            maxProfit = Math.Max(maxProfit, tasks[i].Profit);
-            i++;
-        }
-        
-        return maxProfit;
-    }
-    
-    private class Task{
-        public int Difficulty {get; set;}
-        public int Profit {get; set;}
     }
 }
