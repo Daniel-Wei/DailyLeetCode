@@ -21,17 +21,21 @@ public class Solution {
         return res;
     }
     
-    private bool CanSearch(int[]position, int m, int max){
+    private bool CanSearch(int[]position, int numOfBalls, int force){
         int last = position[0];
+        
+        // for example: m = 3
+        // there should be two indexes in the position 
+        // that position[i-1] - position[0] >= force && position[i-2] - position[0] >= force
         int count = 1;
         
         foreach(int p in position){
-            if(p - last >= max){
+            if(p - last >= force){
                 last = p;
                 count++;
             }
         }
        
-        return count >= m;
+        return count >= numOfBalls;
     }
 }
