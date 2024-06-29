@@ -1,5 +1,6 @@
 class Solution {
     private HashMap<Integer, HashSet<Integer>> map = new HashMap<Integer, HashSet<Integer>>();
+    
     public List<List<Integer>> getAncestors(int n, int[][] edges) {
         int[][]g = new int[n][n];
         
@@ -22,6 +23,7 @@ class Solution {
     private HashSet<Integer> dfs(int[][]g, int n, int node){
         HashSet<Integer>ancestors = new HashSet<Integer>();
         
+        // Avoid unnecessary repeated search
         if(map.containsKey(node)){
             return map.get(node);
         }
