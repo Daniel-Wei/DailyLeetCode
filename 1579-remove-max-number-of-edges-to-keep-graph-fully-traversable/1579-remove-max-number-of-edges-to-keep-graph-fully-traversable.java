@@ -53,6 +53,7 @@ class Solution {
             }
         }
         
+        // Check whether there are N connected nodes for both Alice and Bob
         if(mergeAlice != n || mergeBob != n){
             return -1;
         };
@@ -79,8 +80,8 @@ class Solution {
             return u;
         }
         
+        // Backtracking
         int finalRoot = find(parent, graph);
-        
         graph[u] = finalRoot;
         
         return finalRoot;
