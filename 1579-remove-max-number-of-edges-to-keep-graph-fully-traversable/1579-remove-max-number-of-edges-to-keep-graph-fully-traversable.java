@@ -72,26 +72,17 @@ class Solution {
         }
     }
     
-//     private int find(int u, int[]graph){
-//         int parent = graph[u];
+    private int find(int u, int[]graph){
+        int parent = graph[u];
         
-//         while(parent != u){
-//             u = parent;
-//             parent = graph[parent];
-//         }
+        if(parent == u){
+            return u;
+        }
         
-//         return parent;
-//     }
-    
-     public int find(int x, int[] parent)
-    {
-        if(parent[x] == x)//when we found the absolute root or the leader of the set 
-            return x;
+        int finalRoot = find(parent, graph);
         
-        int temp= find(parent[x], parent);
+        graph[u] = finalRoot;
         
-        parent[x]= temp;//Path Compression//child pointing to the absolute root or the leader of the set, while backtracking
-        
-        return temp;//returning the absolute root 
+        return finalRoot;
     }
 }
