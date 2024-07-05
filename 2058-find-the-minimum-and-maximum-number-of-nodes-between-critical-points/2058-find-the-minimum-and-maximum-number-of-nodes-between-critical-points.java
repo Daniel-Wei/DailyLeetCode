@@ -12,9 +12,9 @@ class Solution {
     public int[] nodesBetweenCriticalPoints(ListNode head) {
         int first = -1;
         int last = -1;
-        int prevLocal = 0;
+        int prevIndex = 0;
         int minDistance = Integer.MAX_VALUE;
-        int count = 1;
+        int index = 1;
         
         ListNode curr = head;
         ListNode next = head.next;
@@ -26,15 +26,15 @@ class Solution {
                 if((curr.val > next.val && next.next.val > next.val) || 
                    (curr.val < next.val && next.val > next.next.val)){
                     if(first == -1){
-                        first = count;
-                        prevLocal = count;
+                        first = index;
+                        prevIndex = index;
                     }else{
-                        minDistance = Math.min(minDistance, count - prevLocal);
-                        prevLocal = count;
-                        last = count;
+                        minDistance = Math.min(minDistance, index - prevIndex);
+                        prevIndex = index;
+                        last = index;
                     }
                 }
-                count++;
+                index++;
                 curr = next;
                 next = next.next;
             }
