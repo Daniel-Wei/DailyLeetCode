@@ -40,7 +40,6 @@ class Solution {
         StringBuilder sb = new StringBuilder();
         
         for(int r : pos){
-            
             //avoid initial 0s
             if(!(sb.length() == 0 && r == 0)){
                 sb.append(r);
