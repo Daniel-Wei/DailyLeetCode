@@ -10,9 +10,7 @@ class Solution {
             int x = k;
             
             while(x > 1){
-                int curr = q.peek();
-                q.remove();
-                q.add(curr);
+                q.add(q.remove());
                 x--;
             }
             
