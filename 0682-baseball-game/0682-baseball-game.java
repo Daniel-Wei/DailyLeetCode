@@ -4,20 +4,18 @@ class Solution {
         int last = 0;
         int secondLast = 0;
         int next = 0;
-        char c = '_';
         
         for(String o : operations){
-            c = o.charAt(o.length() - 1);
-            if(c == 'C'){
+            if(o.equals("C")){
                 s.pop();
-            }else if(c == '+'){
+            }else if(o.equals("+")){
                 last = s.pop();
                 secondLast = s.pop();
                 next = last + secondLast;
                 s.push(secondLast);
                 s.push(last);
                 s.push(next);
-            }else if(c == 'D'){
+            }else if(o.equals("D")){
                 last = s.pop();
                 next = last * 2;
                 s.push(last);
