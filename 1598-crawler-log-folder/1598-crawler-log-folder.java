@@ -11,6 +11,7 @@ class Solution {
                 res += 1;
                 
             // log is "../"
+            // notice: res -= 1 only when we are not at the root folder
             }else if(n != 2 && res > 0){
                 res -= 1;
             }
