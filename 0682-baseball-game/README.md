@@ -3,27 +3,27 @@
 <p>You are given a list of strings <code>operations</code>, where <code>operations[i]</code> is the <code>i<sup>th</sup></code> operation you must apply to the record and is one of the following:</p>
 
 <ul>
-	<li>An integer <code>x</code>.</li>
+<li>An integer <code>x</code>.
 
-	<ul>
-		<li>Record a new score of <code>x</code>.</li>
-	</ul>
-	</li>
-	<li><code>'+'</code>.
-	<ul>
-		<li>Record a new score that is the sum of the previous two scores.</li>
-	</ul>
-	</li>
-	<li><code>'D'</code>.
-	<ul>
-		<li>Record a new score that is the double of the previous score.</li>
-	</ul>
-	</li>
-	<li><code>'C'</code>.
-	<ul>
-		<li>Invalidate the previous score, removing it from the record.</li>
-	</ul>
-	</li>
+<ul>
+	<li>Record a new score of <code>x</code>.</li>
+</ul>
+</li>
+<li><code>'+'</code>.
+<ul>
+	<li>Record a new score that is the sum of the previous two scores.</li>
+</ul>
+</li>
+<li><code>'D'</code>.
+<ul>
+	<li>Record a new score that is the double of the previous score.</li>
+</ul>
+</li>
+<li><code>'C'</code>.
+<ul>
+	<li>Invalidate the previous score, removing it from the record.</li>
+</ul>
+</li>
 </ul>
 
 <p>Return <em>the sum of all the scores on the record after applying all the operations</em>.</p>
