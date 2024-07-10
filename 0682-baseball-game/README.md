@@ -3,7 +3,7 @@
 <p>You are given a list of strings <code>operations</code>, where <code>operations[i]</code> is the <code>i<sup>th</sup></code> operation you must apply to the record and is one of the following:</p>
 
 <ul>
-	<li>An integer <code>x</code>.
+	<li>An integer <code>x</code>.</li>
 
 	<ul>
 		<li>Record a new score of <code>x</code>.</li>
