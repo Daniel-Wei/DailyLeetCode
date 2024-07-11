@@ -1,31 +1,32 @@
 class Solution {
-
     public String reverseParentheses(String s) {
-        Stack<Integer> openParenthesesIndices = new Stack<>();
-        StringBuilder result = new StringBuilder();
-
-        for (char currentChar : s.toCharArray()) {
-            if (currentChar == '(') {
-                // Store the current length as the start index for future reversal
-                openParenthesesIndices.push(result.length());
-            } else if (currentChar == ')') {
-                int start = openParenthesesIndices.pop();
-                // Reverse the substring between the matching parentheses
-                reverse(result, start, result.length() - 1);
-            } else {
-                // Append non-parenthesis characters to the processed string
-                result.append(currentChar);
+        Stack<Integer> stack = new Stack<Integer>();
+        StringBuilder sb = new StringBuilder();
+        
+        
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(c == '('){
+                //next index is the start
+                stack.push(sb.length());
+            }else if(c == ')'){
+                //the index of current last char in sb is the end index
+                reverseString(sb, stack.pop(), sb.length() - 1);
+            }else{
+                sb.append(c);
             }
         }
-
-        return result.toString();
+        
+        return sb.toString();
     }
-
-    private void reverse(StringBuilder sb, int start, int end) {
-        while (start < end) {
-            char temp = sb.charAt(start);
-            sb.setCharAt(start++, sb.charAt(end));
-            sb.setCharAt(end--, temp);
+    
+    private void reverseString(StringBuilder sb, int start, int end){
+        int len = end - start + 1;
+        
+        for(int i = start; i < start + len / 2; i++){
+            char temp = sb.charAt(i);
+            sb.setCharAt(i, sb.charAt(start + end - i));
+            sb.setCharAt(start + end - i, temp);
         }
     }
 }
