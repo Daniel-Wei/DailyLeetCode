@@ -1,28 +1,28 @@
 class Solution {
     public int wordCount(String[] startWords, String[] targetWords) {
-        HashSet<String> sortedStartWords = new HashSet<>();
-        for (String startWord : startWords) {
-            char[] chArr = startWord.toCharArray();
-            Arrays.sort(chArr);
-            String newStartWord = new String(chArr);
-            sortedStartWords.add(newStartWord);
+        HashSet<String> set = new HashSet<>();
+        for (String w : startWords) {
+            char[] chars = w.toCharArray();
+            Arrays.sort(chars);
+            String newStartWord = new String(chars);
+            set.add(newStartWord);
         }
 
-        int ans = 0;
-        for (String targetWord : targetWords) {
-            char[] chArr = targetWord.toCharArray();
-            Arrays.sort(chArr);
-            String newTargetWord = new String(chArr);
+        int res = 0;
+        for (String w : targetWords) {
+            char[] chars = w.toCharArray();
+            Arrays.sort(chars);
+            String t = new String(chars);
 
-            for (int i = 0; i < newTargetWord.length(); i++) {
-                String subStringWord = newTargetWord.substring(0, i) + 
-                            newTargetWord.substring(i + 1, newTargetWord.length());
-                if (sortedStartWords.contains(subStringWord)) {
-                    ans += 1;
+            for (int i = 0; i < t.length(); i++) {
+                String sub = t.substring(0, i) + 
+                            t.substring(i + 1, t.length());
+                if (set.contains(sub)) {
+                    res += 1;
                     break;
                 }
             }
         }
-        return ans;
+        return res;
     }
 }
