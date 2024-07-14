@@ -1,57 +1,87 @@
 class Solution {
 
-    public List<Integer> survivedRobotsHealths(
-        int[] positions,
-        int[] healths,
-        String directions
-    ) {
-        int n = positions.length;
-        Integer[] indices = new Integer[n];
-        List<Integer> result = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
-
-        for (int index = 0; index < n; ++index) {
-            indices[index] = index;
+    public List<Integer> survivedRobotsHealths(int[] positions, int[] healths, String directions) {
+        List<Robot> robots = new ArrayList<Robot>();
+        
+        for(int i = 0; i < positions.length; i++){
+            robots.add(new Robot(positions[i], healths[i], directions.charAt(i), i));
         }
+        
+        Collections.sort(robots, new Comparator<Robot>(){
 
-        Arrays.sort(
-            indices,
-            (lhs, rhs) -> Integer.compare(positions[lhs], positions[rhs])
-        );
+          public int compare(Robot r1, Robot r2)
+          {
+             return r1.pos - r2.pos;
+          }
+        });
 
-        for (int currentIndex : indices) {
-            // Add right-moving robots to the stack
-            if (directions.charAt(currentIndex) == 'R') {
-                stack.push(currentIndex);
-            } else {
-                while (!stack.isEmpty() && healths[currentIndex] > 0) {
-                    // Pop the top robot from the stack for collision check
-                    int topIndex = stack.pop();
+        
+        Stack<Robot> s = new Stack<Robot>();
+        
+        for(int i = 0; i < robots.size(); i++){
+            Robot curr = robots.get(i);
+            
+            if(curr.dire == 'R'){
+                s.push(curr);
+            }else{
+                boolean addCurr = true;
+                while(s.size() > 0 && s.peek().dire == 'R'){
+                
+                    Robot prev = s.peek();
 
-                    // Top robot survives, current robot is destroyed
-                    if (healths[topIndex] > healths[currentIndex]) {
-                        healths[topIndex] -= 1;
-                        healths[currentIndex] = 0;
-                        stack.push(topIndex);
-                    } else if (healths[topIndex] < healths[currentIndex]) {
-                        // Current robot survives, top robot is destroyed
-                        healths[currentIndex] -= 1;
-                        healths[topIndex] = 0;
-                    } else {
-                        // Both robots are destroyed
-                        healths[currentIndex] = 0;
-                        healths[topIndex] = 0;
+                   
+                    if(prev.health > curr.health){
+                        prev.health -= 1;
+                        healths[prev.index] -= 1;
+                        healths[curr.index] = -1;
+                        addCurr = false;
+                        break;
+                    }else if(prev.health == curr.health){
+                        s.pop();
+                        healths[prev.index] = -1;
+                        healths[curr.index] = -1;
+                        addCurr = false;
+                        break;
+                    }else{
+                        s.pop();
+                        curr.health -= 1;
+                        healths[prev.index] = -1;
+                        healths[curr.index] -= 1;
                     }
+                    
+                }
+                
+                if(addCurr){
+                     s.push(curr);
                 }
             }
+            
+           
         }
-
-        // Collect surviving robots
-        for (int index = 0; index < n; ++index) {
-            if (healths[index] > 0) {
-                result.add(healths[index]);
+        
+        List<Integer> res = new ArrayList<Integer>();
+        
+        for(int i = 0; i < healths.length; i++){
+            if(healths[i] > 0){
+                res.add(healths[i]);
             }
         }
-        return result;
+       
+        
+        return res;
+    }
+    
+    private class Robot{
+        int pos;
+        int health;
+        char dire;
+        int index;
+        
+        public Robot(int pos, int health, char dire, int index){
+            this.pos = pos;
+            this.health = health;
+            this.dire = dire;
+            this.index = index;
+        }
     }
 }
