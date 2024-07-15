@@ -20,20 +20,12 @@ class Solution {
         Set<Integer> children = new HashSet<Integer>();
         
         for(int[] d : descriptions){
-            TreeNode parent = new TreeNode(d[0]);
             
-            if(m.containsKey(d[0])){
-                parent = m.get(d[0]);
-            }
-            
-            
-            TreeNode child = new TreeNode(d[1]);
-            
-            if(m.containsKey(d[1])){
-                child = m.get(d[1]);
-            }
-            
-            children.add(d[1]);
+            int parentVal = d[0];
+            int childVal = d[1];
+            children.add(childVal);
+            TreeNode parent = m.getOrDefault(parentVal, new TreeNode(parentVal));
+            TreeNode child = m.getOrDefault(childVal, new TreeNode(childVal));
             
             if(d[2] == 1){
                 parent.left = child;
@@ -41,8 +33,8 @@ class Solution {
                 parent.right = child;
             }
             
-            m.put(d[0], parent);
-            m.put(d[1], child);
+            m.put(parentVal, parent);
+            m.put(childVal, child);
         }
         
         
