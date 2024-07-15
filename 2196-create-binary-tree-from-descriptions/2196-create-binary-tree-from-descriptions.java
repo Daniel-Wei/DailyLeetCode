@@ -49,6 +49,7 @@ class Solution {
         for(Integer key : m.keySet()){
             if(!children.contains(key)){
                 root = m.get(key);
+                break;
             }
         }
         
