@@ -41,6 +41,8 @@ class Solution {
     private boolean getPathFromRoot(TreeNode curr, int nodeVal, StringBuilder sb){
         if(curr.val != nodeVal){
             if(curr.left != null && getPathFromRoot(curr.left, nodeVal, sb)){
+                //insert(0, 'L') consumes too much
+                //instead, we could reverse the whole StringBuilder afterwards
                 sb.append('L');
                 return true;
             } 
