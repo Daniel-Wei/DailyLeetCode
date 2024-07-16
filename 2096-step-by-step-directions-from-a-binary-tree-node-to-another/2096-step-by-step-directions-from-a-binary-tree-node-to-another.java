@@ -22,6 +22,9 @@ class Solution {
         getPathFromRoot(root, destValue, dPath);
     
         int i = 0;
+        
+        sPath.reverse();
+        dPath.reverse();
 
         //remove initial common paths
         while(i < sPath.length() && i < dPath.length()){
@@ -38,14 +41,13 @@ class Solution {
     private boolean getPathFromRoot(TreeNode curr, int nodeVal, StringBuilder sb){
         if(curr.val != nodeVal){
             if(curr.left != null && getPathFromRoot(curr.left, nodeVal, sb)){
-                sb.insert(0, 'L');
+                sb.append('L');
                 return true;
             } 
             
             if(curr.right != null && getPathFromRoot(curr.right, nodeVal, sb)){
-                sb.insert(0, 'R');
+                sb.append('R');
                 return true;
-                
             }
             
             return false;
