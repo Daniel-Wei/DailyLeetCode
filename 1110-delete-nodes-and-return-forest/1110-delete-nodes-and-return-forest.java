@@ -22,12 +22,10 @@ class Solution {
            toDelete.add(v);
        }
        
-       deleteNodes(root, toDelete, forest);
+       // as DFS, the final returned TreeNode is the updated root
+       root = deleteNodes(root, toDelete, forest);
        
-       
-       // as forest only includes the trees under deleted nodes
-       // we need to keep the remaining overall structure as well
-       if(!toDelete.contains(root.val)){
+       if(root != null){
            forest.add(root);
        }
        
