@@ -46,7 +46,6 @@ class Solution {
         int[][]matrix = new int[k][k];
         
         for(int j = 1; j <= k; j++){
-            // System.out.println(colOrdering.get(j));
             matrix[rowOrdering.get(j)][colOrdering.get(j)] = j;
         }
         
