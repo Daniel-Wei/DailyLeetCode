@@ -1,21 +1,21 @@
 class Solution {
     public String[] sortPeople(String[] names, int[] heights) {
-        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>((a, b) -> b.getKey() - a.getKey()); 
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+        int n = heights.length;
         
-        for(int i = 0; i < heights.length; i++){
-            pq.add(new Pair<>(heights[i], i));
+        for(int i = 0; i < n; i++){
+            hm.put(heights[i], i);
         }
         
-        String[]res = new String[heights.length];
-        int i = 0;
+        Arrays.sort(heights);
+        int i = n - 1;
+        String[]res = new String[n];
         
-        while(pq.size() > 0){
-            res[i] = names[pq.poll().getValue()];
-            i++;
+        for(int h : heights){
+            res[i] = names[hm.get(h)];
+            i--;
         }
         
         return res;
-        
-        
     }
 }
