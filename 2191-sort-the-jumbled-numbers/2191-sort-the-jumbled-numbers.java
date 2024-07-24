@@ -1,36 +1,29 @@
 class Solution {
     public int[] sortJumbled(int[] mapping, int[] nums) {
-        Integer[]indices = new Integer[nums.length];
+        HashMap<Character, Character> m = new HashMap<Character, Character>();
         
-        for(int i = 0; i < nums.length; i++){
-            indices[i] = i;
-        }
-
-        Arrays.sort(indices, Comparator.comparing(i -> convert(mapping, nums[i])));
-        
-        int[]res = new int[nums.length];
-        
-        for(int i = 0; i < nums.length; i++){
-            res[i] = nums[indices[i]];
+        for(int i = 0; i < mapping.length; i++){
+            m.put(Character.forDigit(i, 10), Character.forDigit(mapping[i], 10));
         }
         
-        return res;
-    }
-    
-    private int convert(int[]mapping, int num){
-        if(num == 0){
-            return mapping[0];
+        HashMap<Integer, Integer> numsMap = new HashMap<Integer, Integer>();
+        
+        for(int n : nums){
+            String str = String.valueOf(n);
+            StringBuilder mappedStr = new StringBuilder();
+            
+            for (char c : str.toCharArray()) {
+                mappedStr.append(m.get(c));
+            }
+            
+            int number = Integer.parseInt(mappedStr.toString());
+            numsMap.put(n, number);
         }
-
-        int base = 1;
-        int n = 0;
-
-        while(num != 0){
-            n += mapping[num % 10] * base;
-            base *= 10;
-            num /= 10;
-        }
-
-        return n;
+        
+        return Arrays.stream(nums)
+                     .boxed()
+                     .sorted((a, b) -> numsMap.get(a) - numsMap.get(b))
+                     .mapToInt(n -> n)
+                     .toArray();
     }
 }
