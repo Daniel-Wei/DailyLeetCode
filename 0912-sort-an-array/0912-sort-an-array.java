@@ -1,18 +1,18 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> a - b);
-        
-        for(int num: nums){
-            pq.add(num);
+        int n = nums.length;
+
+        for(int i = 1; i < n; i++){
+            int curr = nums[i];
+            
+            int j = i;
+            while(j > 0 && curr < nums[j - 1]){
+                nums[j] = nums[j-1];
+                j--;
+            }
+            
+            nums[j] = curr;
         }
-        
-        int i = 0;
-        
-        while(pq.size() > 0){
-            nums[i] = pq.poll();
-            i++;
-        }
-        
         return nums;
     }
 }
