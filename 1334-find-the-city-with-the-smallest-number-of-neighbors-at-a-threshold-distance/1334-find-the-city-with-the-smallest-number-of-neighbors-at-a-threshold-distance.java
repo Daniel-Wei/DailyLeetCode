@@ -2,12 +2,6 @@ class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
         int[][]g = new int[n][n];
         
-        // for(int[] node : g){
-        //     for(int i = 0; i < n; i++){
-        //         node[i] = -1;
-        //     }
-        // }
-        
         for(int[]e : edges){
             g[e[0]][e[1]] = e[2];
             g[e[1]][e[0]] = e[2];
@@ -29,7 +23,7 @@ class Solution {
     }
     
     private int dijkstraAlgo(int start, int[][]g, int n, int threshold){
-        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<Pair<Integer, Integer>>((a, b) -> a.getValue() - b.getValue());
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[0] - b[0]);
         
         int[] dist = new int[n];
         
@@ -39,18 +33,18 @@ class Solution {
         
         dist[start] = 0;
         
-        pq.add(new Pair<Integer, Integer>(start, 0));
+        pq.add(new int[]{start, 0});
         
         while(pq.size() > 0){
-            Pair<Integer, Integer> curr = pq.poll();
-            if(curr.getValue() <= threshold){
-                int k = curr.getKey();
+            int[] curr = pq.poll();
+            if(curr[1] <= threshold){
+                int k = curr[0];
                 int[]edges = g[k];
 
 
                 for(int i = 0; i < n; i++){
                     if(edges[i] > 0 && edges[i] + dist[k] < dist[i]){
-                        pq.add(new Pair<Integer, Integer> (i, edges[i] + dist[k]));
+                        pq.add(new int[] {i, edges[i] + dist[k]});
                         dist[i] = edges[i] + dist[k];
                     }
                 }
