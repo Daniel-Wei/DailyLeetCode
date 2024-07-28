@@ -1,23 +1,26 @@
 class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        int[][]g = new int[n][n];
+        List<int[]>[]graph = new ArrayList[n];
         
-        for(int[] node : g){
-            for(int i = 0; i < n; i++){
-                node[i] = -1;
-            }
+        for(int i = 0; i < n; i++){
+            graph[i] = new ArrayList<int[]>();
         }
         
         for(int[]e : edges){
-            g[e[0]][e[1]] = e[2];
-            g[e[1]][e[0]] = e[2];
+            int u = e[0];
+            int v = e[1];
+            int d = e[2];
+            
+            graph[u].add(new int[]{v, d});
+            graph[v].add(new int[]{u, d});
+            
         }
         
         int res = 0;
         int count = n;
         
         for(int i = 0; i < n; i++){
-            int currCount = dijkstraAlgo(i, g, n, distanceThreshold);
+            int currCount = dijkstraAlgo(i, graph, n, distanceThreshold);
             
             if(currCount <= count){
                 count = currCount;
@@ -28,8 +31,8 @@ class Solution {
         return res;
     }
     
-    private int dijkstraAlgo(int start, int[][]g, int n, int threshold){
-        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<Pair<Integer, Integer>>((a, b) -> a.getValue() - b.getValue());
+    private int dijkstraAlgo(int start, List<int[]>[]g, int n, int threshold){
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[1] - b[1]);
         
         int[] dist = new int[n];
         
@@ -39,19 +42,21 @@ class Solution {
         
         dist[start] = 0;
         
-        pq.add(new Pair<Integer, Integer>(start, 0));
+        pq.add(new int[]{start, 0});
         
         while(pq.size() > 0){
-            Pair<Integer, Integer> curr = pq.poll();
-            if(curr.getValue() <= threshold){
-                int k = curr.getKey();
-                int[]edges = g[k];
+            int[] curr = pq.poll();
+            if(curr[1] <= threshold){
+                int k = curr[0];
+                List<int[]> edges = g[k];
 
 
-                for(int i = 0; i < n; i++){
-                    if(edges[i] > 0 && edges[i] + dist[k] < dist[i]){
-                        pq.add(new Pair<Integer, Integer> (i, edges[i] + dist[k]));
-                        dist[i] = edges[i] + dist[k];
+                for(int[]e : edges){
+                    int v = e[0];
+                    int d = e[1];
+                    if(d + dist[k] < dist[v]){
+                        pq.add(new int[] {v, d + dist[k]});
+                        dist[v] = d + dist[k];
                     }
                 }
             }
