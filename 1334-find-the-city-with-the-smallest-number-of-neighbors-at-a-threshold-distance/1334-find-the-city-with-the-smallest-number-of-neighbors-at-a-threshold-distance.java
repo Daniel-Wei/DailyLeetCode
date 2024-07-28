@@ -2,11 +2,11 @@ class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
         int[][]g = new int[n][n];
         
-        for(int[] node : g){
-            for(int i = 0; i < n; i++){
-                node[i] = -1;
-            }
-        }
+        // for(int[] node : g){
+        //     for(int i = 0; i < n; i++){
+        //         node[i] = -1;
+        //     }
+        // }
         
         for(int[]e : edges){
             g[e[0]][e[1]] = e[2];
