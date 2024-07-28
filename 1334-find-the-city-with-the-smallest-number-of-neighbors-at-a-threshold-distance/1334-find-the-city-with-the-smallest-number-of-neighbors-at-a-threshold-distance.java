@@ -23,7 +23,7 @@ class Solution {
     }
     
     private int dijkstraAlgo(int start, int[][]g, int n, int threshold){
-        PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[0] - b[0]);
+        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<Pair<Integer, Integer>>((a, b) -> a.getValue() - b.getValue());
         
         int[] dist = new int[n];
         
@@ -33,18 +33,18 @@ class Solution {
         
         dist[start] = 0;
         
-        pq.add(new int[]{start, 0});
+        pq.add(new Pair<Integer, Integer>(start, 0));
         
         while(pq.size() > 0){
-            int[] curr = pq.poll();
-            if(curr[1] <= threshold){
-                int k = curr[0];
+            Pair<Integer, Integer> curr = pq.poll();
+            if(curr.getValue() <= threshold){
+                int k = curr.getKey();
                 int[]edges = g[k];
 
 
                 for(int i = 0; i < n; i++){
                     if(edges[i] > 0 && edges[i] + dist[k] < dist[i]){
-                        pq.add(new int[] {i, edges[i] + dist[k]});
+                        pq.add(new Pair<Integer, Integer> (i, edges[i] + dist[k]));
                         dist[i] = edges[i] + dist[k];
                     }
                 }
