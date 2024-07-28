@@ -45,21 +45,20 @@ class Solution {
         
         while(pq.size() > 0){
             Pair<Integer, Integer> curr = pq.poll();
+            if(curr.getValue() <= threshold){
+                int k = curr.getKey();
+                visited.add(k);
             
-            int k = curr.getKey();
-            int d = curr.getValue();
-            visited.add(k);
-            
-            int[]edges = g[k];
-            
-            
-            for(int i = 0; i < n; i++){
-                if(!visited.contains(i) && edges[i] > 0 && edges[i] + dist[k] < dist[i]){
-                    pq.add(new Pair<Integer, Integer> (i, edges[i] + dist[k]));
-                    dist[i] = edges[i] + dist[k];
+                int[]edges = g[k];
+
+
+                for(int i = 0; i < n; i++){
+                    if(!visited.contains(i) && edges[i] > 0 && edges[i] + dist[k] < dist[i]){
+                        pq.add(new Pair<Integer, Integer> (i, edges[i] + dist[k]));
+                        dist[i] = edges[i] + dist[k];
+                    }
                 }
             }
-            
         }
         
         int count = 0;
