@@ -21,6 +21,8 @@ class Solution {
             }
         }
         
+        // i < n - 2 是因为i最多到倒数第三位（index = n - 3）
+        // 我们需要三个数组成一组，最多就是 [n - 3, n - 2, n - 1]
         for(int i = 0; i < n - 2; i++){
             for(int j = i+1; j < n - 1; j++){
                 if(rating[i] < rating[j]){
