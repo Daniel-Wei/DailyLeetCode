@@ -3,10 +3,6 @@ class Solution {
         int n = books.length;
         int[]dp = new int[n + 1];
         
-        for(int i = 0; i < n + 1; i++){
-            dp[i] = Integer.MAX_VALUE;
-        }
-        
         dp[0] = 0;
         
         for(int i = 0; i < n; i++){
