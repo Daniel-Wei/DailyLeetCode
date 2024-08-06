@@ -1,4 +1,4 @@
-# DailyLeetCode 3
+# DailyLeetCode 1
 ### 记录一下自己刷力扣。
 <br>
 
