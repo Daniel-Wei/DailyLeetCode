@@ -1,9 +1,9 @@
 class Solution {
     public String numberToWords(int num) {
-        
         if(num == 0){
             return "Zero";
         }
+
         List<Integer> scientificDigits = new ArrayList<Integer>();
         String[] scientificNotations = new String[3];
         scientificNotations[0] = " Thousand";
@@ -51,13 +51,13 @@ class Solution {
         twentyToNinety[6] = "Eighty";
         twentyToNinety[7] = "Ninety";
         
-        res += convertToString(scientificDigits.get(0), oneToNine, tenToNineteen, twentyToNinety).trim();
+        res += convertThreeDigitsToString(scientificDigits.get(0), oneToNine, tenToNineteen, twentyToNinety).trim();
         
         for(int i = 1; i < scientificDigits.size(); i++){
             int curr = scientificDigits.get(i);
             
             if(curr > 0){
-                res = convertToString(curr, oneToNine, tenToNineteen, twentyToNinety)                                                           + scientificNotations[i - 1] 
+                res = convertThreeDigitsToString(curr, oneToNine, tenToNineteen, twentyToNinety)                                               + scientificNotations[i - 1] 
                     + (res.length() > 0 ? " ": "") 
                     + res;
             }
@@ -67,10 +67,9 @@ class Solution {
         return res;
     }
     
-    private String convertToString(int num, String[] oneToNine, String[] tenToNineteen, String[] twentyToNinety){
+    private String convertThreeDigitsToString(int num, String[] oneToNine, String[] tenToNineteen, String[] twentyToNinety)     {
         String res = "";
         int k = 2;
-        
         
         while(num != 0 && k >= 0){
             int curr = num / ((int)Math.pow(10, k));
@@ -102,12 +101,8 @@ class Solution {
             }
             
             k--;
-           
-            
         }
         
         return res;
-        
-        
     }
 }
