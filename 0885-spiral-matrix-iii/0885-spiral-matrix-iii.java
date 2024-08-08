@@ -37,10 +37,8 @@ class Solution {
                 }
             }
             
-//             System.out.println(r);
-//             System.out.println(c);
-//             System.out.println();
-            
+
+            // Move towards south
             if(prevR < r && c >= 0 && c < cols){
                 for(int i = Math.max(prevR + 1, 0); i <= Math.min(r, rows - 1); i++){
                     res[count][0] = i;
@@ -49,6 +47,7 @@ class Solution {
                 }
             }
             
+            // Move towards north
             if(prevR > r && c >= 0 && c < cols){
                 for(int i = Math.min(prevR - 1, rows - 1); i >= Math.max(r, 0); i--){
                     res[count][0] = i;
@@ -57,6 +56,7 @@ class Solution {
                 }
             }
             
+            // Move towards east
             if(prevC < c && r >= 0 && r < rows){
                 for(int i = Math.max(prevC + 1, 0); i <= Math.min(c, cols - 1); i++){
                     res[count][0] = r;
@@ -65,6 +65,7 @@ class Solution {
                 }
             }
             
+            // Move towards west
             if(prevC > c && r >= 0 && r < rows){
                 for(int i = Math.min(prevC - 1, cols - 1); i >= Math.max(c, 0); i--){
                     res[count][0] = r;
