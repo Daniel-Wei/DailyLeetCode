@@ -3,17 +3,8 @@ class Solution {
         int r = grid.length;
         int c = grid[0].length;
         
-        // int[][][]g = new int[r][c][2];
-        int[][]searched = new int[r][c];
-        
-        // for(int i = 0; i < r; i++){
-        //     for(int j = 0; j < c; j++){
-        //         g[i][j] = new int[]{r, c};
-        //     }
-        // }
-        
-        int count = islandNumbers(grid, searched);
-        
+        //Initial Tests
+        int count = islandNumbers(grid, new int[r][c]);
         if(count == 0 || count == 2){
             return 0;
         }
