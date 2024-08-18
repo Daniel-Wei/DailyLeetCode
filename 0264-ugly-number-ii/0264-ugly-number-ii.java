@@ -15,27 +15,15 @@ class Solution {
         int res = 1;
         
         while(k < n){
-            int t1 = Integer.MAX_VALUE;
-            int t2 = Integer.MAX_VALUE;
-            int t3 = Integer.MAX_VALUE;
+            int t2 = q2.peek() * 2;
+            int t3 = q3.peek() * 3;
+            int t5 = q5.peek() * 5;
+          
+            res = Math.min(t2, Math.min(t3, t5));
             
-            if(q2.size() > 0){
-                t1 = q2.peek() * 2;
-            }
-            
-            if(q3.size() > 0){
-                t2 = q3.peek() * 3;
-            }
-            
-            if(q5.size() > 0){
-                t3 = q5.peek() * 5;
-            }
-            
-            res = Math.min(t1, Math.min(t2, t3));
-            
-            if(res == t1){
+            if(res == t2){
                 q2.remove();
-            }else if(res == t2){
+            }else if(res == t3){
                 q3.remove();
             }else{
                 q5.remove();
