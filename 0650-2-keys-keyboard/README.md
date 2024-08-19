@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/2-keys-keyboard/">650. 2 Keys Keyboard</a></h2><h3>Medium</h3><hr><div><p>There is only one character <code>'A'</code> on the screen of a notepad. You can perform one of two operations on this notepad for each step:</p>
+<h2><a href="https://leetcode.com/problems/2-keys-keyboard/solution/">650. 2 Keys Keyboard</a></h2><h3>Medium</h3><hr><div><p>There is only one character <code>'A'</code> on the screen of a notepad. You can perform one of two operations on this notepad for each step:</p>
 
 <ul>
 	<li>Copy All: You can copy all the characters present on the screen (a partial copy is not allowed).</li>
