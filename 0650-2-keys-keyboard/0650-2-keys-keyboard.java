@@ -1,16 +1,16 @@
-class Solution:
-    def minSteps(self, n: int) -> int:
-        if n == 1:
-            return 0
+class Solution {
+    public int minSteps(int n) {
+        int res = 0;
         
-        steps = 0
-        factor = 2
+        while(n != 1){
+            for(int i = 2; i <= n; i++){
+                while(n % i == 0){
+                    n /= i;
+                    res += i;
+                }
+            }
+        }
         
-        while n > 1:
-            while n % factor == 0:
-                steps += factor
-                n //= factor
-            factor += 1
-        
-        return steps
-        
+        return res;
+    }
+}
