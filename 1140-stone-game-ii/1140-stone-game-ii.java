@@ -12,8 +12,6 @@ class Solution {
         int[][]dp = new int[n][n];
         
         return helper(0, 1, dp, sums, n);
-        
-        
     }
     
     private int helper(int i, int m, int[][] dp, int[] sums, int n){
@@ -33,7 +31,8 @@ class Solution {
         for(int k = 1; k <= Math.min(2 * m, n - i - 1); k++){
             min = Math.min(min, helper(i + k, Math.max(k, m), dp, sums, n));
         }
-        
+
+
         dp[i][m] = sums[i] - min;
         
         return dp[i][m];
