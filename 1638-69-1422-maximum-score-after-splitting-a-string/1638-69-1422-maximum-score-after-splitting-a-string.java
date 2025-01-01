@@ -14,6 +14,9 @@ class Solution {
             numOfOnes++;
         }
 
+        // 不需要记录右边1的数量 再reversely iterate records 用numOfOnes去减
+        // 直接把正向iterate到的1 当作总和的-1就好
+        // Reverse records 求和不过也就是 leftOnes + numOfRecords - rightsOnes
         for(int i = 1; i < len - 1; i++){
             char c = s.charAt(i);
             if(c - '0' == 0){
