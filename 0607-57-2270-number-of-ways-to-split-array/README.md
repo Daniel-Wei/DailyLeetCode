@@ -1,4 +1,4 @@
-<h2> 607 57
+<h2>
 2270. Number of Ways to Split Array</h2><hr><div><p>You are given a <strong>0-indexed</strong> integer array <code>nums</code> of length <code>n</code>.</p>
 
 <p><code>nums</code> contains a <strong>valid split</strong> at index <code>i</code> if the following are true:</p>
