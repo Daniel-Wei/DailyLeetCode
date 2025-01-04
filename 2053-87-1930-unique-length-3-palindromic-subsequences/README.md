@@ -1,4 +1,4 @@
-<h2> 2053 87
+<h2>
 1930. Unique Length-3 Palindromic Subsequences</h2><hr><div><p>Given a string <code>s</code>, return <em>the number of <strong>unique palindromes of length three</strong> that are a <strong>subsequence</strong> of </em><code>s</code>.</p>
 
 <p>Note that even if there are multiple ways to obtain the same subsequence, it is still only counted <strong>once</strong>.</p>
