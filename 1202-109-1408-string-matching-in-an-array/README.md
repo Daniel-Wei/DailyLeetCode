@@ -1,4 +1,4 @@
-<h2> 1202 109
+<h2>
 1408. String Matching in an Array</h2><hr><div><p>Given an array of string <code>words</code>, return <em>all strings in </em><code>words</code><em> that is a <strong>substring</strong> of another word</em>. You can return the answer in <strong>any order</strong>.</p>
 
 <p>A <strong>substring</strong> is a contiguous sequence of characters within a string</p>
