@@ -1,4 +1,4 @@
-<h2> 11841 146
+<h2>
 208. Implement Trie (Prefix Tree)</h2><hr><div><p>A <a href="https://en.wikipedia.org/wiki/Trie" target="_blank"><strong>trie</strong></a> (pronounced as "try") or <strong>prefix tree</strong> is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.</p>
 
 <p>Implement the Trie class:</p>
