@@ -1,4 +1,4 @@
-<h2> 382 27
+<h2>
 3042. Count Prefix and Suffix Pairs I</h2><hr><div><p>You are given a <strong>0-indexed</strong> string array <code>words</code>.</p>
 
 <p>Let's define a <strong>boolean</strong> function <code>isPrefixAndSuffix</code> that takes two strings, <code>str1</code> and <code>str2</code>:</p>
