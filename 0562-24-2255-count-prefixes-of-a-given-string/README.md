@@ -1,4 +1,4 @@
-<h2> 562 24
+<h2>
 2255. Count Prefixes of a Given String</h2><hr><div><p>You are given a string array <code>words</code> and a string <code>s</code>, where <code>words[i]</code> and <code>s</code> comprise only of <strong>lowercase English letters</strong>.</p>
 
 <p>Return <em>the <strong>number of strings</strong> in</em> <code>words</code> <em>that are a <strong>prefix</strong> of</em> <code>s</code>.</p>
