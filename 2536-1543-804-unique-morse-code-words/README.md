@@ -1,4 +1,4 @@
-<h2> 2536 1543
+<h2>
 804. Unique Morse Code Words</h2><hr><div><p>International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows:</p>
 
 <ul>
