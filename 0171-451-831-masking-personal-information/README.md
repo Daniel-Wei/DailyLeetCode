@@ -1,4 +1,4 @@
-<h2> 171 451
+<h2>
 831. Masking Personal Information</h2><hr><div><p>You are given a personal information string <code>s</code>, representing either an <strong>email address</strong> or a <strong>phone number</strong>. Return <em>the <strong>masked</strong> personal information using the below rules</em>.</p>
 
 <p><u><strong>Email address:</strong></u></p>
