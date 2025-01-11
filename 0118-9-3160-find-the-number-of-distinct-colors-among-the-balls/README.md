@@ -1,4 +1,4 @@
-<h2> 118 9
+<h2>
 3160. Find the Number of Distinct Colors Among the Balls</h2><hr><div><p>You are given an integer <code>limit</code> and a 2D array <code>queries</code> of size <code>n x 2</code>.</p>
 
 <p>There are <code>limit + 1</code> balls with <strong>distinct</strong> labels in the range <code>[0, limit]</code>. Initially, all balls are uncolored. For every query in <code>queries</code> that is of the form <code>[x, y]</code>, you mark ball <code>x</code> with the color <code>y</code>. After each query, you need to find the number of <strong>distinct</strong> colors among the balls.</p>
