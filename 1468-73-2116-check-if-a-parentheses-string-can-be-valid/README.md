@@ -1,4 +1,4 @@
-<h2> 1468 73
+<h2>
 2116. Check if a Parentheses String Can Be Valid</h2><hr><div><p>A parentheses string is a <strong>non-empty</strong> string consisting only of <code>'('</code> and <code>')'</code>. It is valid if <strong>any</strong> of the following conditions is <strong>true</strong>:</p>
 
 <ul>
