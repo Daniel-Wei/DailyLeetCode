@@ -1,4 +1,4 @@
-<h2> 791 51
+<h2>
 2429. Minimize XOR</h2><hr><div><p>Given two positive integers <code>num1</code> and <code>num2</code>, find the positive integer <code>x</code> such that:</p>
 
 <ul>
