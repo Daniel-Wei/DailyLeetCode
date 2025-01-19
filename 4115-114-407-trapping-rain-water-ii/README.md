@@ -1,4 +1,4 @@
-<h2> 4115 114
+<h2>
 407. Trapping Rain Water II</h2><hr><div><p>Given an <code>m x n</code> integer matrix <code>heightMap</code> representing the height of each unit cell in a 2D elevation map, return <em>the volume of water it can trap after raining</em>.</p>
 
 <p>&nbsp;</p>
