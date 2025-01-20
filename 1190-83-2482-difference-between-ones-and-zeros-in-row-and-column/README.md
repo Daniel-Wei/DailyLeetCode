@@ -1,4 +1,4 @@
-<h2> 1190 83
+<h2>
 2482. Difference Between Ones and Zeros in Row and Column</h2><hr><div><p>You are given a <strong>0-indexed</strong> <code>m x n</code> binary matrix <code>grid</code>.</p>
 
 <p>A <strong>0-indexed</strong> <code>m x n</code> difference matrix <code>diff</code> is created with the following procedure:</p>
