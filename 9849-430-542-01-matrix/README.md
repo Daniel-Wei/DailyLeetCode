@@ -1,4 +1,4 @@
-<h2> 9849 430
+<h2>
 542. 01 Matrix</h2><hr><div><p>Given an <code>m x n</code> binary matrix <code>mat</code>, return <em>the distance of the nearest </em><code>0</code><em> for each cell</em>.</p>
 
 <p>The distance between two cells sharing a common edge is <code>1</code>.</p>
