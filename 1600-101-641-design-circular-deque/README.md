@@ -1,4 +1,4 @@
-<h2> 1600 101
+<h2>
 641. Design Circular Deque</h2><hr><div><p>Design your implementation of the circular double-ended queue (deque).</p>
 
 <p>Implement the <code>MyCircularDeque</code> class:</p>
