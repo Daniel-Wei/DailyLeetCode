@@ -1,4 +1,4 @@
-<h2> 1149 75
+<h2>
 1765. Map of Highest Peak</h2><hr><div><p>You are given an integer matrix <code>isWater</code> of size <code>m x n</code> that represents a map of <strong>land</strong> and <strong>water</strong> cells.</p>
 
 <ul>
