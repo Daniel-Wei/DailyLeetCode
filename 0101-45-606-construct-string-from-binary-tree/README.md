@@ -1,4 +1,4 @@
-<h2> 101 45
+<h2>
 606. Construct String from Binary Tree</h2><hr><div><p>Given the <code>root</code> node of a binary tree, your task is to create a string representation of the tree following a specific set of formatting rules. The representation should be based on a preorder traversal of the binary tree and must adhere to the following guidelines:</p>
 
 <ul>
