@@ -1,4 +1,4 @@
-<h2> 546 36
+<h2>
 2948. Make Lexicographically Smallest Array by Swapping Elements</h2><hr><div><p>You are given a <strong>0-indexed</strong> array of <strong>positive</strong> integers <code>nums</code> and a <strong>positive</strong> integer <code>limit</code>.</p>
 
 <p>In one operation, you can choose any two indices <code>i</code> and <code>j</code> and swap <code>nums[i]</code> and <code>nums[j]</code> <strong>if</strong> <code>|nums[i] - nums[j]| &lt;= limit</code>.</p>
