@@ -1,4 +1,4 @@
-<h2> 744 50
+<h2>
 2658. Maximum Number of Fish in a Grid</h2><hr><div><p>You are given a <strong>0-indexed</strong> 2D matrix <code>grid</code> of size <code>m x n</code>, where <code>(r, c)</code> represents:</p>
 
 <ul>
