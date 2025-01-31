@@ -1,4 +1,4 @@
-<h2> 4324 89
+<h2>
 827. Making A Large Island</h2><hr><div><p>You are given an <code>n x n</code> binary matrix <code>grid</code>. You are allowed to change <strong>at most one</strong> <code>0</code> to be <code>1</code>.</p>
 
 <p>Return <em>the size of the largest <strong>island</strong> in</em> <code>grid</code> <em>after applying this operation</em>.</p>
