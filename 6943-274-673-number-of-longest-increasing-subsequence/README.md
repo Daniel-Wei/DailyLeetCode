@@ -1,4 +1,4 @@
-<h2> 6943 274
+<h2>
 673. Number of Longest Increasing Subsequence</h2><hr><div><p>Given an integer array&nbsp;<code>nums</code>, return <em>the number of longest increasing subsequences.</em></p>
 
 <p><strong>Notice</strong> that the sequence has to be <strong>strictly</strong> increasing.</p>
