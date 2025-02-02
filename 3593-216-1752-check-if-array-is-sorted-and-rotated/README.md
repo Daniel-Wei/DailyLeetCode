@@ -1,4 +1,4 @@
-<h2> 3593 216
+<h2>
 1752. Check if Array Is Sorted and Rotated</h2><hr><div><p>Given an array <code>nums</code>, return <code>true</code><em> if the array was originally sorted in non-decreasing order, then rotated <strong>some</strong> number of positions (including zero)</em>. Otherwise, return <code>false</code>.</p>
 
 <p>There may be <strong>duplicates</strong> in the original array.</p>
