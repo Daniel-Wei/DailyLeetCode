@@ -1,4 +1,4 @@
-<h2> 565 65
+<h2>
 2741. Special Permutations</h2><hr><div><p>You are given a&nbsp;<strong>0-indexed</strong>&nbsp;integer array&nbsp;<code>nums</code>&nbsp;containing&nbsp;<code>n</code>&nbsp;<strong>distinct</strong> positive integers. A permutation of&nbsp;<code>nums</code>&nbsp;is called special if:</p>
 
 <ul>
