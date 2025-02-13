@@ -1,4 +1,4 @@
-<h2> 414 52
+<h2>
 3066. Minimum Operations to Exceed Threshold Value II</h2><hr><div><p>You are given a <strong>0-indexed</strong> integer array <code>nums</code>, and an integer <code>k</code>.</p>
 
 <p>In one operation, you will:</p>
